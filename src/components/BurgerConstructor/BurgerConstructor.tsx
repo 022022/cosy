@@ -1,60 +1,73 @@
 import { useState } from 'react';
 import { BurgerImage } from '../BurgerImage/BurgerImage';
 import { burgerIngredients } from '../data/items';
+import { BurgerIngredientDetails } from '../BurgerIngredientDetails/BurgerIngredientDetails';
 
 export function BurgerConstructor() {
-	const [checkedItems, setCheckedItems] = useState(burgerIngredients);
+	const [burgerOptions, setBurgerOptions] = useState(burgerIngredients);
 
-	const containerHeight = window.innerHeight - 200;
+	const containerMaxHeight = Math.min(window.innerHeight - 200, 600);
 
-	function addItem(target: string, checked: boolean) {
-		const newCheckedItems = checkedItems.map((item) =>
-			item.key === target
-				? {
-						key: target,
-						visibility: checked,
-						width: 340,
-						height: 138,
-				  }
-				: item
-		);
-
-		setCheckedItems(newCheckedItems);
+	function toggleItem(target: string, type: string, checked: boolean) {
+        switch (type) {
+			case 'checkbox': {
+				const newBurgerOptions = burgerOptions.map((group) => {
+					for (let i = 0; i < group.options.length; i++) {
+						if (group.options[i].id === target) {
+							group.options[i].added = checked;
+						}
+					}
+					return group;
+				});
+				setBurgerOptions(newBurgerOptions);
+                break;
+			}
+            case 'radio': {
+				const newBurgerOptions = burgerOptions.map((group) => {
+					for (let i = 0; i < group.options.length; i++) {
+						if (group.options[i].id === target) {
+                            group.options.forEach((option) => option.added = false);
+							group.options[i].added = true;
+						}
+					}
+					return group;
+				});
+				setBurgerOptions(newBurgerOptions);
+				break;
+            }
+            default: {
+                return;
+            }
+		}
 	}
 
+    const groups = burgerOptions.map((group, groupIndex) => (
+		<li key={groupIndex}>
+			<h2> {group.category} </h2>
+			<ul>
+				{group.options.map((option, index) => (
+					<BurgerIngredientDetails
+						name={String(groupIndex)}
+						toggleItem={toggleItem}
+						option={option}
+						type={group.type}
+						key={index}
+					/>
+				))}
+			</ul>
+		</li>
+	));
+
 	return (
-		<>
-			<label>
-				Помидоры
-				<input
-					type='checkbox'
-					id='05_pomodoro'
-					onChange={(e) =>
-						addItem(
-							(e.target as HTMLInputElement).id,
-							(e.target as HTMLInputElement).checked
-						)
-					}
-				></input>
-			</label>
+		<div style={{ display: 'flex' }}>
+			<div>
+				<BurgerImage
+					burgerOptions={burgerOptions}
+					containerMaxHeight={containerMaxHeight}
+				></BurgerImage>
+			</div>
 
-			<label>
-				Бекон
-				<input
-					type='checkbox'
-					id='08_bacon'
-					onChange={
-						((e) => addItem((e.target as HTMLElement).id,
-						(e.target as HTMLInputElement).checked)
-                        )
-					}
-				></input>
-			</label>
-
-			<BurgerImage
-				checkedItems={checkedItems}
-				containerHeight={containerHeight}
-			></BurgerImage>
-		</>
+			<ul>{groups}</ul>
+		</div>
 	);
 }

@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: black;
+  color: #eee;
 }
 
 .burger__total {
@@ -13,12 +15,12 @@ body {
 
 .burger__total img {
     position: absolute;
-    transition: 0.3s;
+    transition: 0.2s;
     transition-timing-function: ease-in;
-    animation-duration: 0.3s;
+    animation-duration: 0.2s;
     animation-fill-mode: forwards;
     animation-timing-function: ease-in;
-    animation-delay: 0.3s;
+    animation-delay: 0.2s;
 }
 
       @keyframes add {
