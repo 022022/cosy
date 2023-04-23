@@ -7,7 +7,25 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.burger__total {
+    position: relative;
 }
+
+.burger__total img {
+    position: absolute;
+    transition: 0.3s;
+    transition-timing-function: ease-in;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in;
+    animation-delay: 0.3s;
+}
+
+      @keyframes add {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
