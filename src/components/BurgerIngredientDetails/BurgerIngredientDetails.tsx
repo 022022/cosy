@@ -2,9 +2,8 @@ import { BurgerIngredientDetailsProps } from '../../types/types';
 
 export function BurgerIngredientDetails({name, toggleItem, option, type}: BurgerIngredientDetailsProps) {
     return (
-		<li style={{display: 'flex'}}>
-			<label>
-				{option.value}
+		<li className='burger__ingredient'>
+			<label className='burger__ingredient-label'>
 				<input
 					name={name}
 					type={type}
@@ -18,14 +17,14 @@ export function BurgerIngredientDetails({name, toggleItem, option, type}: Burger
 						)
 					}
 				></input>
+				{option.value}
 			</label>
 			<div>{option.info.weight} гр.</div>
 			<div>{option.info.cost} руб.</div>
-			<div>
+			<div className='burger__nutritional-value'>
 				<span>{option.info.calories}</span>/
 				<span>{option.info.protein}</span>/
-				<span>{option.info.fat}</span>/
-				<span>{option.info.carbs}</span>
+				<span>{option.info.fat}</span>/<span>{option.info.carbs}</span>
 			</div>
 		</li>
 	);

@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { BurgerImage } from '../BurgerImage/BurgerImage';
 import { burgerIngredients } from '../data/items';
-import { BurgerIngredientDetails } from '../BurgerIngredientDetails/BurgerIngredientDetails';
+import { BurgerOptionsList } from '../BurgerOptionsList/BurgerOptionsList';
+import { BurgerOrderDetails } from '../BurgerOrderDetails/BurgerOrderDetails';
 
 export function BurgerConstructor() {
 	const [burgerOptions, setBurgerOptions] = useState(burgerIngredients);
@@ -41,33 +42,22 @@ export function BurgerConstructor() {
 		}
 	}
 
-    const groups = burgerOptions.map((group, groupIndex) => (
-		<li key={groupIndex}>
-			<h2> {group.category} </h2>
-			<ul>
-				{group.options.map((option, index) => (
-					<BurgerIngredientDetails
-						name={String(groupIndex)}
-						toggleItem={toggleItem}
-						option={option}
-						type={group.type}
-						key={index}
-					/>
-				))}
-			</ul>
-		</li>
-	));
-
 	return (
-		<div style={{ display: 'flex' }}>
-			<div>
+		<div className='burger__wrapper'>
+			<div className='burger__order'>
+				<BurgerOrderDetails></BurgerOrderDetails>
+
 				<BurgerImage
 					burgerOptions={burgerOptions}
 					containerMaxHeight={containerMaxHeight}
 				></BurgerImage>
+
 			</div>
 
-			<ul>{groups}</ul>
+			<BurgerOptionsList
+				burgerOptions={burgerOptions}
+				toggleItem={toggleItem}
+			></BurgerOptionsList>
 		</div>
 	);
 }

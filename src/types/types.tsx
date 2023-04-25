@@ -40,3 +40,16 @@ export interface BurgerIngredientDetailsProps {
 	option: BurgerOptions;
     type: string;
 }
+
+export interface BurgerOptionsListProps {
+	burgerOptions: BurgerGroup[];
+	toggleItem: (target: string, type: string, checked: boolean) => void;
+}
+
+export interface BurgerIngredientImageProps {
+	height: number;
+	width: number;
+    id: string;
+	i: number;
+	top: number;
+}

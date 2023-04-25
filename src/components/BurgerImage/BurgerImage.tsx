@@ -1,4 +1,5 @@
 import { BurgerImageProps } from '../../types/types';
+import { BurgerIngredientImage } from '../BurgerIngredientImage/BurgerIngredientImage';
 
 export function BurgerImage({ burgerOptions, containerMaxHeight }: BurgerImageProps) {
     const divisorHeight = 2;
@@ -49,33 +50,26 @@ export function BurgerImage({ burgerOptions, containerMaxHeight }: BurgerImagePr
 		if (i === 1) top = top + itemsVisible[0].visual.height / divisorHeight / 2;
 
 		const el = (
-			<img
+			<BurgerIngredientImage
+				key={itemsVisible[i].id}
 				height={height}
 				width={width}
-				key={itemsVisible[i].id}
-				data-order={i}
 				id={itemsVisible[i].id}
-				src={`./images/${itemsVisible[i].id}.png`}
-				alt=''
-				style={{
-					zIndex: 1000 - i,
-					top: `${top}px`,
-					opacity: 0,
-					animationName: 'add',
-				}}
-			/>
+				i={i}
+				top={top}
+			></BurgerIngredientImage>
 		);
-
 		images.push(el);
 	}
 
 	return (
-		<div
-			className='burger__total'
-			id='burger-total'
-			style={{ height: `${containerHeight}px`, width: `${containerWidth}px` }}
-		>
-			{images}
-		</div>
+        <div className='burger__image'>
+            <div
+                className="burger__whole"
+                style={{ height: `${containerHeight}px`, width: `${containerWidth}px` }}
+            >
+                {images}
+            </div>
+        </div>
 	);
 }
