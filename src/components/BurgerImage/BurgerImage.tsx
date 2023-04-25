@@ -1,3 +1,4 @@
+import { AnimatePresence } from 'framer-motion';
 import { BurgerImageProps } from '../../types/types';
 import { BurgerIngredientImage } from '../BurgerIngredientImage/BurgerIngredientImage';
 
@@ -63,13 +64,16 @@ export function BurgerImage({ burgerOptions, containerMaxHeight }: BurgerImagePr
 	}
 
 	return (
-        <div className='burger__image'>
-            <div
-                className="burger__whole"
-                style={{ height: `${containerHeight}px`, width: `${containerWidth}px` }}
-            >
-                {images}
-            </div>
-        </div>
+		<div className='burger__image'>
+			<div
+				className='burger__whole'
+				style={{
+					height: `${containerHeight}px`,
+					width: `${containerWidth}px`,
+				}}
+			>
+				<AnimatePresence initial={false}>{images}</AnimatePresence>
+			</div>
+		</div>
 	);
 }

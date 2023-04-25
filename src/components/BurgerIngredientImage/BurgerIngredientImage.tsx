@@ -1,4 +1,5 @@
 import { BurgerIngredientImageProps } from '../../types/types';
+import { motion } from 'framer-motion';
 
 export function BurgerIngredientImage({
 	height,
@@ -7,8 +8,19 @@ export function BurgerIngredientImage({
 	i,
 	top,
 }: BurgerIngredientImageProps) {
+
+    const variants = {
+		initial: { opacity: 0 },
+		enter: { opacity: 1, transition: { duration: 0.4, delay: 0.1 } },
+		exit: { opacity: 0 },
+	};
+
 	return (
-		<img
+		<motion.img
+			initial='initial'
+			animate='enter'
+			exit='exit'
+			variants={variants}
 			height={height}
 			width={width}
 			id={id}
@@ -17,8 +29,6 @@ export function BurgerIngredientImage({
 			style={{
 				zIndex: 1000 - i,
 				top: `${top}px`,
-				opacity: 0,
-				animationName: 'add',
 			}}
 		/>
 	);
