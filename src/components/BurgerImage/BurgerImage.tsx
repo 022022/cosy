@@ -5,7 +5,8 @@ import { BurgerIngredientImage } from '../BurgerIngredientImage/BurgerIngredient
 export function BurgerImage({ burgerOptions, containerMaxHeight }: BurgerImageProps) {
     const divisorHeight = 2;
 
-    let containerHeight = containerMaxHeight;
+    let containerHeight = Math.min(containerMaxHeight, window.innerHeight - 200);
+    if (window.innerWidth < 900) containerHeight = Math.min(containerMaxHeight, window.innerHeight - 300);
 
     const itemsVisible = [];
 

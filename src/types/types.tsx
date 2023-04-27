@@ -3,9 +3,11 @@ export interface BurgerImageProps {
 	containerMaxHeight: number;
 }
 
+export enum BurgerOptionsType {'checkbox', 'radio'};
+
 export interface BurgerGroup {
 	category: string;
-	type: string;
+	type: BurgerOptionsType;
 	options: BurgerOptions[];
 }
 
@@ -35,15 +37,23 @@ export interface BurgerInfo {
 }
 
 export interface BurgerIngredientDetailsProps {
-    name: string;
-	toggleItem: (target: string, type: string, checked: boolean) => void;
+	name: string;
+	toggleItem: (
+		target: string,
+		type: BurgerOptionsType,
+		checked: boolean
+	) => void;
 	option: BurgerOptions;
-    type: string;
+	type: BurgerOptionsType;
 }
 
 export interface BurgerOptionsListProps {
 	burgerOptions: BurgerGroup[];
-	toggleItem: (target: string, type: string, checked: boolean) => void;
+	toggleItem: (
+		target: string,
+		type: BurgerOptionsType,
+		checked: boolean
+	) => void;
 }
 
 export interface BurgerIngredientImageProps {

@@ -1,3 +1,6 @@
+@import url(./components/BurgerConstructor/burgerConstructor.css);
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,29 +8,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: black;
-  color: #eee;
 }
 
-.burger__total {
-    position: relative;
+* {
+    box-sizing: border-box;
 }
 
-.burger__total img {
-    position: absolute;
-    transition: 0.2s;
-    transition-timing-function: ease-in;
-    animation-duration: 0.2s;
-    animation-fill-mode: forwards;
-    animation-timing-function: ease-in;
-    animation-delay: 0.2s;
-}
-
-      @keyframes add {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }

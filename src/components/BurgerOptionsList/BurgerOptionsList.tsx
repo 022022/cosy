@@ -1,20 +1,49 @@
-import { BurgerOptionsListProps } from '../../types/types';
+import { BurgerOptionsListProps, BurgerOptionsType } from '../../types/types';
 import { BurgerIngredientDetails } from '../BurgerIngredientDetails/BurgerIngredientDetails';
+import Form from 'react-bootstrap/Form';
 
 export function BurgerOptionsList({burgerOptions, toggleItem}: BurgerOptionsListProps) {
+
 	    const groups = burgerOptions.map((group, groupIndex) => (
-			<li key={groupIndex} className='burger__group'>
+			<li key={`group-${groupIndex}`} className='burger__group'>
 				<h2> {group.category} </h2>
-				<ul className='burger__group-contents'>
-					{group.options.map((option, index) => (
-						<BurgerIngredientDetails
-							name={String(groupIndex)}
-							toggleItem={toggleItem}
-							option={option}
-							type={group.type}
-							key={index}
-						/>
-					))}
+				<ul className=''>
+					<Form className='burger__group-contents'>
+						{group.options.map((option, index) => (
+							<li
+								className='burger__ingredient'
+								key={`group-${groupIndex}-${index}`}
+							>
+								<Form.Check
+									type={
+										group.type ===
+										BurgerOptionsType.checkbox
+											? 'checkbox'
+											: 'radio'
+									}
+									label={option.value}
+									name={String(groupIndex)}
+									id={option.id}
+									checked={option.added}
+									onChange={(e) =>
+										toggleItem(
+											(e.target as HTMLInputElement).id,
+											group.type,
+											(e.target as HTMLInputElement)
+												.checked
+										)
+									}
+								/>
+								<BurgerIngredientDetails
+									name={String(groupIndex)}
+									toggleItem={toggleItem}
+									option={option}
+									type={group.type}
+									key={index}
+								/>
+							</li>
+						))}
+					</Form>
 				</ul>
 			</li>
 		));

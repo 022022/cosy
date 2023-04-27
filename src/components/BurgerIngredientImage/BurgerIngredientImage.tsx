@@ -8,7 +8,6 @@ export function BurgerIngredientImage({
 	i,
 	top,
 }: BurgerIngredientImageProps) {
-
     const variants = {
 		initial: { opacity: 0 },
 		enter: { opacity: 1, transition: { duration: 0.4, delay: 0.1 } },
@@ -27,7 +26,7 @@ export function BurgerIngredientImage({
 			src={`./images/${id}.png`}
 			alt=''
 			style={{
-				zIndex: 1000 - i,
+				zIndex: 999 - i,
 				top: `${top}px`,
 			}}
 		/>

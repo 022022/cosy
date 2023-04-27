@@ -3,15 +3,16 @@ import { BurgerImage } from '../BurgerImage/BurgerImage';
 import { burgerIngredients } from '../data/items';
 import { BurgerOptionsList } from '../BurgerOptionsList/BurgerOptionsList';
 import { BurgerOrderDetails } from '../BurgerOrderDetails/BurgerOrderDetails';
+import { BurgerOptionsType } from '../../types/types';
 
 export function BurgerConstructor() {
 	const [burgerOptions, setBurgerOptions] = useState(burgerIngredients);
 
 	const containerMaxHeight = Math.min(window.innerHeight - 200, 600);
 
-	function toggleItem(target: string, type: string, checked: boolean) {
+	function toggleItem(target: string, type: BurgerOptionsType, checked: boolean) {
         switch (type) {
-			case 'checkbox': {
+			case BurgerOptionsType.checkbox: {
 				const newBurgerOptions = burgerOptions.map((group) => {
 					for (let i = 0; i < group.options.length; i++) {
 						if (group.options[i].id === target) {
@@ -21,13 +22,15 @@ export function BurgerConstructor() {
 					return group;
 				});
 				setBurgerOptions(newBurgerOptions);
-                break;
+				break;
 			}
-            case 'radio': {
+			case BurgerOptionsType.radio: {
 				const newBurgerOptions = burgerOptions.map((group) => {
 					for (let i = 0; i < group.options.length; i++) {
 						if (group.options[i].id === target) {
-                            group.options.forEach((option) => option.added = false);
+							group.options.forEach(
+								(option) => (option.added = false)
+							);
 							group.options[i].added = true;
 						}
 					}
@@ -35,10 +38,10 @@ export function BurgerConstructor() {
 				});
 				setBurgerOptions(newBurgerOptions);
 				break;
-            }
-            default: {
-                return;
-            }
+			}
+			default: {
+				return;
+			}
 		}
 	}
 
@@ -51,7 +54,6 @@ export function BurgerConstructor() {
 					burgerOptions={burgerOptions}
 					containerMaxHeight={containerMaxHeight}
 				></BurgerImage>
-
 			</div>
 
 			<BurgerOptionsList

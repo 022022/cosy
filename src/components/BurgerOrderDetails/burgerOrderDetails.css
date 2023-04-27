@@ -1,0 +1,31 @@
+
+.burger__key {
+    border-bottom: 1px dashed #7e7e7e;
+    padding-bottom: 3px;
+    color: #a4a4a4;
+}
+
+.burger__order-details {
+    border-radius: 0 100px 100px 0;
+    padding: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+}
+
+.burger__order-details-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 0;
+    width: 140px;
+}
+
+.burger__order-details li{
+    list-style: none;
+}
+
+.burger__price {
+    font-size: large;
+}
