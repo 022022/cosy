@@ -1,8 +1,7 @@
-import { HTMLAttributes, HTMLInputTypeAttribute } from 'react';
-import { BurgerIngredientDetailsProps, BurgerOptionsType } from '../../types/types';
+import { BurgerIngredientDetailsProps } from '../../types/types';
 
 
-export function BurgerIngredientDetails({name, toggleItem, option, type}: BurgerIngredientDetailsProps) {
+export function BurgerIngredientDetails({option}: BurgerIngredientDetailsProps) {
     return (
 		<div className='burger__ingredient-details'>
 			<div>{option.info.weight} гр.</div>

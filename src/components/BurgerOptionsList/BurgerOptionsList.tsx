@@ -35,10 +35,7 @@ export function BurgerOptionsList({burgerOptions, toggleItem}: BurgerOptionsList
 									}
 								/>
 								<BurgerIngredientDetails
-									name={String(groupIndex)}
-									toggleItem={toggleItem}
 									option={option}
-									type={group.type}
 									key={index}
 								/>
 							</li>

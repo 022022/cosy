@@ -37,14 +37,7 @@ export interface BurgerInfo {
 }
 
 export interface BurgerIngredientDetailsProps {
-	name: string;
-	toggleItem: (
-		target: string,
-		type: BurgerOptionsType,
-		checked: boolean
-	) => void;
 	option: BurgerOptions;
-	type: BurgerOptionsType;
 }
 
 export interface BurgerOptionsListProps {
