@@ -6,7 +6,6 @@
 }
 
 .burger__order-details {
-    border-radius: 0 100px 100px 0;
     padding: 130px;
     display: flex;
     flex-direction: column;

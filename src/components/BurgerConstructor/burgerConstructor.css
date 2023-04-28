@@ -80,7 +80,21 @@
 }
 
 @media (max-width: 767px) {
-	.burger__order {
+    .burger__order-details {
+        position: fixed;
+        bottom: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+        background-color: #39373af5;
+    }
+
+    .burger__groups {
+        margin-bottom: 180px;
+    }
+
+	.burger__image {
 		display: none;
 	}
 
