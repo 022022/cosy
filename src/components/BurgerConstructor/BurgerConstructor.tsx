@@ -48,7 +48,9 @@ export function BurgerConstructor() {
 	return (
 		<div className='burger__wrapper'>
 			<div className='burger__order'>
-				<BurgerOrderDetails></BurgerOrderDetails>
+				<BurgerOrderDetails
+					burgerOptions={burgerOptions}
+				></BurgerOrderDetails>
 
 				<BurgerImage
 					burgerOptions={burgerOptions}
