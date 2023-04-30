@@ -4,9 +4,12 @@ import { burgerIngredients } from '../data/items';
 import { BurgerOptionsList } from '../BurgerOptionsList/BurgerOptionsList';
 import { BurgerOrderDetails } from '../BurgerOrderDetails/BurgerOrderDetails';
 import { BurgerOptionsType } from '../../types/types';
+import { HealthyMode } from '../HealthyMode/HealthyMode';
 
 export function BurgerConstructor() {
 	const [burgerOptions, setBurgerOptions] = useState(burgerIngredients);
+
+    const [showNutrition, setShowNutrition] = useState(false);
 
 	const containerMaxHeight = Math.min(window.innerHeight - 200, 600);
 
@@ -47,8 +50,13 @@ export function BurgerConstructor() {
 
 	return (
 		<div className='burger__wrapper'>
+			<HealthyMode
+				showNutrition={showNutrition}
+				setShowNutrition={setShowNutrition}
+			></HealthyMode>
 			<div className='burger__order'>
 				<BurgerOrderDetails
+					showNutrition={showNutrition}
 					burgerOptions={burgerOptions}
 				></BurgerOrderDetails>
 
@@ -59,6 +67,7 @@ export function BurgerConstructor() {
 			</div>
 
 			<BurgerOptionsList
+				showNutrition={showNutrition}
 				burgerOptions={burgerOptions}
 				toggleItem={toggleItem}
 			></BurgerOptionsList>

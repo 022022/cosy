@@ -1,8 +1,8 @@
 .burger__ingredient-details {
     line-height: 1.5;
-    display: grid;
-    grid-template-columns: repeat(3, 120px);
-    gap: 10px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
     justify-items: end;
     color: #a4a4a4;
 }

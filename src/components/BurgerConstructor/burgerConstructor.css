@@ -14,7 +14,6 @@
 	width: 500px;
 	position: relative;
 	display: flex;
-	height: 100vh;
 	background-color: #292929;
 }
 
@@ -28,18 +27,19 @@
 	}
 
 	.burger__options {
-		margin-left: 410px;
+        margin-left: 420px;
 	}
 
 	.burger__order {
 		width: 310px;
 		position: fixed;
+        height: 100vh;
 	}
 }
 
 @media (max-width: 1080px) {
 	.burger__ingredient {
-		flex-direction: column;
+        flex-wrap: wrap;
 	}
 
 	.burger__ingredient-details {
@@ -75,7 +75,7 @@
 	}
 
 	.burger__options {
-		margin-left: 196px;
+        margin-left: 310px;
 	}
 }
 
@@ -99,7 +99,7 @@
 	}
 
 	.burger__ingredient {
-		flex-direction: row;
+        flex-wrap: wrap;
 	}
 
 	.burger__options {
@@ -109,13 +109,13 @@
 
 @media (max-width: 600px) {
 	.burger__ingredient {
-		flex-direction: column;
+        flex-wrap: wrap;
 	}
 }
 
 @media (max-width: 400px) {
 	.burger__ingredient {
-		flex-direction: column;
+        flex-wrap: wrap;
 	}
 
 	.burger__ingredient-details {

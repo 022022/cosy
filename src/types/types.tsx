@@ -37,10 +37,12 @@ export interface BurgerInfo {
 }
 
 export interface BurgerIngredientDetailsProps {
+	showNutrition: boolean;
 	option: BurgerOptions;
 }
 
 export interface BurgerOptionsListProps {
+    showNutrition: boolean;
 	burgerOptions: BurgerGroup[];
 	toggleItem: (
 		target: string,
@@ -55,4 +57,9 @@ export interface BurgerIngredientImageProps {
     id: string;
 	i: number;
 	top: number;
+}
+
+export interface BurgerOrderDetailsProps {
+	showNutrition: boolean;
+	burgerOptions: BurgerGroup[];
 }
