@@ -7,11 +7,12 @@ import { BurgerOptionsType } from '../../types/types';
 import { HealthyMode } from '../HealthyMode/HealthyMode';
 
 export function BurgerConstructor() {
+    console.log('BurgerConstructor');
 	const [burgerOptions, setBurgerOptions] = useState(burgerIngredients);
 
     const [showNutrition, setShowNutrition] = useState(false);
 
-	const containerMaxHeight = Math.min(window.innerHeight - 200, 600);
+	const containerMaxHeight = Math.max(Math.min(window.innerHeight - 240, 600), 165);
 
 	function toggleItem(target: string, type: BurgerOptionsType, checked: boolean) {
         switch (type) {

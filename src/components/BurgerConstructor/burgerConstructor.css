@@ -92,6 +92,7 @@
 
     .burger__groups {
         margin-bottom: 180px;
+        padding: 0 40px;
     }
 
 	.burger__image {
@@ -122,4 +123,16 @@
 		display: flex;
 		flex-direction: column;
 	}
+}
+
+@media (max-height: 460px) {
+	.burger__image {
+		display: none;
+	}
+}
+
+@media (max-height: 560px) {
+    .burger__order-details-list {
+        display: none;
+    }
 }

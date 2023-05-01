@@ -3,11 +3,8 @@ import { BurgerImageProps } from '../../types/types';
 import { BurgerIngredientImage } from '../BurgerIngredientImage/BurgerIngredientImage';
 
 export function BurgerImage({ burgerOptions, containerMaxHeight }: BurgerImageProps) {
-    const divisorHeight = 2;
-
-    let containerHeight = Math.min(containerMaxHeight, window.innerHeight - 200);
-    if (window.innerWidth < 900) containerHeight = Math.min(containerMaxHeight, window.innerHeight - 300);
-
+    const presetFirstElementWidth = 190;
+    const containerHeight = containerMaxHeight;
     const itemsVisible = [];
 
     for(const group of burgerOptions) {
@@ -25,31 +22,42 @@ export function BurgerImage({ burgerOptions, containerMaxHeight }: BurgerImagePr
 		Number(a.id.slice(0, 2)) -
 		Number(b.id.slice(0, 2)));
 
-	const offset = Math.floor(containerHeight / itemsVisible.length);
+    const divisor = Math.floor(itemsVisible[0].visual.width / presetFirstElementWidth);
+
+	const offset = Math.floor(
+		(containerHeight - itemsVisible[itemsVisible.length - 1].visual.height / divisor) / (itemsVisible.length - 1)
+	);
 
 	const firstElTopOffset = Math.floor(
-		itemsVisible[0].visual.height / divisorHeight / 2
+		itemsVisible[0].visual.height / divisor / 2
 	);
 
 	const images = [];
 
-    let containerWidth = 0;
+    let containerWidth = Math.max(itemsVisible[0].visual.width / divisor, itemsVisible[itemsVisible.length - 1].visual.width / divisor);
 
-	for (let i = 0; i < itemsVisible.length; i++) {
-		const height = Math.floor(itemsVisible[i].visual.height / divisorHeight);
-		const width = itemsVisible[i].visual.width / divisorHeight;
+	const firstEl = (
+		<BurgerIngredientImage
+			key={itemsVisible[0].id}
+			height={Math.floor(itemsVisible[0].visual.height / divisor)}
+			width={Math.floor(itemsVisible[0].visual.width / divisor)}
+			id={itemsVisible[0].id}
+			i={0}
+			top={0}
+		></BurgerIngredientImage>
+	);
+	images.push(firstEl);
+
+	for (let i = 1; i < itemsVisible.length - 1; i++) {
+		const height = Math.floor(itemsVisible[i].visual.height / divisor);
+		const width = Math.floor(itemsVisible[i].visual.width / divisor);
         containerWidth = Math.max(width, containerWidth);
 
-		const lastElemCompensation = Math.floor(
-			itemsVisible[itemsVisible.length - 1].visual.height / divisorHeight / 2.5
-		);
-
 		const elCenter = Math.floor(height / 2);
-		let top = Math.max(
-			0,
-			firstElTopOffset + offset * i - elCenter - lastElemCompensation
-		);
-		if (i === 1) top = top + itemsVisible[0].visual.height / divisorHeight / 2;
+
+		let top = firstElTopOffset +
+				offset * i -
+				elCenter;
 
 		const el = (
 			<BurgerIngredientImage
@@ -63,6 +71,23 @@ export function BurgerImage({ burgerOptions, containerMaxHeight }: BurgerImagePr
 		);
 		images.push(el);
 	}
+
+    const lastElIndex = itemsVisible.length - 1;
+
+    const lastEl = (
+		<BurgerIngredientImage
+			key={itemsVisible[lastElIndex].id}
+			height={Math.floor(
+				itemsVisible[lastElIndex].visual.height / divisor
+			)}
+			width={Math.floor(itemsVisible[lastElIndex].visual.width / divisor)}
+			id={itemsVisible[lastElIndex].id}
+			i={lastElIndex}
+			top={containerHeight - Math.floor(
+				itemsVisible[lastElIndex].visual.height / divisor)}
+		></BurgerIngredientImage>
+	);
+	images.push(lastEl);
 
 	return (
 		<div className='burger__image'>
