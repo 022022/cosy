@@ -6,15 +6,15 @@
 .burger__wrapper {
 	background-color: #0d0d0d;
 	color: #dddddd;
-	display: flex;
 	justify-content: center;
 }
 
 .burger__order {
 	width: 500px;
-	position: relative;
 	display: flex;
 	background-color: #292929;
+	position: fixed;
+    height: 100vh;
 }
 
 @media (max-width: 1400px) {
