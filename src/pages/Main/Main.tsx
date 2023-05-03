@@ -1,4 +1,3 @@
-import { NavBar } from '../components/NavBar';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
@@ -7,7 +6,6 @@ import Container from 'react-bootstrap/Container';
 export function Main(){
     return (
 		<>
-			<NavBar></NavBar>
 			<Container>
 				<div className='main'>
 					<div className='roadmap'>
