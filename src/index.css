@@ -1,8 +1,6 @@
 @import url(./pages/Main/main.css);
+@import url(./pages/Additions/addition.css);
 
 body {
-    background: url('./../public/images/aleisha-kalina.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100vh;
+    min-height: 100vh;
 }

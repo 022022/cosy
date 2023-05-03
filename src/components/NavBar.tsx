@@ -14,9 +14,9 @@ export function NavBar() {
 				<Navbar.Collapse id='responsive-navbar-nav'>
 					<Nav className='me-auto'>
 						<Nav.Link href='#'>Бургер</Nav.Link>
-                        
+
 						<NavLink to='/additions' className='nav-link'>
-							К бургеру
+							Дополнительно
 						</NavLink>
 
 						<Nav.Link href='#'>Доставка</Nav.Link>

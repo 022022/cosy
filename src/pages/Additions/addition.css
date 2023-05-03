@@ -1,0 +1,13 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 260px));
+    justify-content: center;
+    gap: 20px;
+}
+
+.additions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 40px;
+}

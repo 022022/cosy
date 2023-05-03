@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 export function Main(){
     return (
 		<>
+			<div className='bg'></div>
 			<Container>
 				<div className='main'>
 					<div className='roadmap'>

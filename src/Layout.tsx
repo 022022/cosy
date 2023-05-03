@@ -5,10 +5,8 @@ export default function Layout() {
 	return (
 		<>
 			<NavBar></NavBar>
-			<main>
-				<Outlet />
-			</main>
 
+            <Outlet />
 		</>
 	);
 }
