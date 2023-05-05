@@ -1,6 +1,6 @@
 import {createClient} from '@sanity/client'
 
-export function fetchBurgerData() {
+export function fetchBurger() {
     const PROJECT_ID = process.env.REACT_APP_API_PROJECT_ID;
     const DATASET = process.env.REACT_APP_API_DATASET;
     const client = createClient({
@@ -10,11 +10,11 @@ export function fetchBurgerData() {
 		apiVersion: '2023-05-03',
 	});
 
-    async function getPosts() {
-        //const posts = await client.fetch('*[type == "radio"]')
-        //return posts;
+    async function getData() {
+        //const data = await client.fetch('*[type == "radio"]')
+        return {data: 111};
     }
 
-    console.log(getPosts());
-    return getPosts();
+    console.log(getData());
+    return getData();
 }

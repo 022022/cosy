@@ -1,13 +1,8 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
-import { fetchBurgerData } from '../../services/sanity/burger';
-
-
 
 export function Main(){
-    // test - fetchBurgerData();
-
     return (
 		<>
 			<Container>
