@@ -4,6 +4,7 @@ import './scss/style.css';
 import { Route, Routes } from 'react-router';
 import Layout from './Layout';
 import { Additions } from './pages/Additions/Additions';
+import { Order } from './pages/Order/Order';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
 				<Route path='/' element={<Layout />}>
 					<Route index element={<Main />} />
 					<Route path='/additions' element={<Additions />} />
+					<Route path='/order' element={<Order />} />
 					<Route path='*' element={<Main />} />
 				</Route>
 			</Routes>
