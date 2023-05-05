@@ -1,0 +1,14 @@
+.burger__image {
+    display: flex;
+    align-items: center;
+}
+
+.burger__whole {
+    position: relative;
+}
+
+.burger__whole img {
+    position: absolute;
+    transition: 0.2s;
+    transition-timing-function: ease-in;
+}

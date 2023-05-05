@@ -1,0 +1,28 @@
+.burger__options {
+    margin-left: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.burger__groups, .burger__groups ul {
+    list-style: none;
+    padding: 0;
+}
+
+.burger__group {
+    padding: 20px 0;
+}
+
+.burger__group h2{
+    margin-bottom: 20px;
+}
+
+.burger__options-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px;
+    gap: 32px;
+    align-items: center;
+}

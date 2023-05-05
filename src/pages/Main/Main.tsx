@@ -1,8 +1,19 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { selectBurger, getBurger } from './../../features/burger/burgerSlice';
 
 export function Main(){
+    const burgerData = useAppSelector(selectBurger);
+	const dispatch = useAppDispatch();
+    console.log(JSON.stringify(burgerData.burger), burgerData.status);
+
+    console.log(burgerData.burger, burgerData.status);
+
+
+
+
     return (
 		<>
 			<Container>
@@ -30,7 +41,10 @@ export function Main(){
 						</Card>
 					</div>
 
-					<Button size='lg'>Хочу бургер!</Button>
+					<Button size='lg' onClick={() => dispatch(getBurger())}>
+						Хочу бургер!
+					</Button>
+
 				</div>
 			</Container>
 		</>

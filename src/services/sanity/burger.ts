@@ -11,10 +11,9 @@ export function fetchBurger() {
 	});
 
     async function getData() {
-        //const data = await client.fetch('*[type == "radio"]')
-        return {data: 111};
-    }
+		const data = await client.fetch('*[_type == "category"]');
+		return { data };
+	}
 
-    console.log(getData());
     return getData();
 }
