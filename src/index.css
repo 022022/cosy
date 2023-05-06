@@ -1,4 +1,4 @@
-@import url(./components/BurgerConstructor/burgerConstructor.css);
+@import url(./features/burger/BurgerConstructor/burgerConstructor.css);
 @import url(./pages/Main/main.css);
 
 body {

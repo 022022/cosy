@@ -1,4 +1,4 @@
-import { BurgerIngredientDetailsProps } from '../../types/types';
+import { BurgerIngredientDetailsProps } from '../types/types';
 
 
 export function BurgerIngredientDetails({

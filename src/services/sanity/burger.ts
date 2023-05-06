@@ -1,6 +1,6 @@
 import {createClient} from '@sanity/client'
 
-export function fetchBurger() {
+export async function fetchBurger() {
     const PROJECT_ID = process.env.REACT_APP_API_PROJECT_ID;
     const DATASET = process.env.REACT_APP_API_DATASET;
     const client = createClient({
@@ -10,10 +10,6 @@ export function fetchBurger() {
 		apiVersion: '2023-05-03',
 	});
 
-    async function getData() {
-		const data = await client.fetch('*[_type == "category"]');
-		return { data };
-	}
-
-    return getData();
+	const data = await client.fetch('*[_type == "category"]');
+	return data;
 }

@@ -1,5 +1,4 @@
 export interface BurgerImageProps {
-	burgerOptions: BurgerGroup[];
 	containerMaxHeight: number;
 }
 
@@ -16,6 +15,11 @@ export interface BurgerOptions {
 	value: string;
 	added: boolean;
 	info: BurgerInfo;
+	image: {
+		asset: {
+			_ref: string;
+		};
+	};
 	visual: {
 		width: number;
 		height: number;
@@ -43,12 +47,7 @@ export interface BurgerIngredientDetailsProps {
 
 export interface BurgerOptionsListProps {
     showNutrition: boolean;
-	burgerOptions: BurgerGroup[];
-	toggleItem: (
-		target: string,
-		type: BurgerOptionsType,
-		checked: boolean
-	) => void;
+
 }
 
 export interface BurgerIngredientImageProps {
@@ -57,9 +56,10 @@ export interface BurgerIngredientImageProps {
     id: string;
 	i: number;
 	top: number;
+    src: string;
 }
 
 export interface BurgerOrderDetailsProps {
 	showNutrition: boolean;
-	burgerOptions: BurgerGroup[];
+	//burgerOptions: BurgerGroup[];
 }

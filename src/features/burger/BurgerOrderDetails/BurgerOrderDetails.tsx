@@ -1,7 +1,12 @@
 import Button from 'react-bootstrap/Button';
-import { BurgerOrderDetailsProps } from '../../types/types';
+import { BurgerOrderDetailsProps } from '../types/types';
+import { useAppSelector } from '../../../app/hooks';
+import { selectBurger } from '../burgerSlice';
 
-export function BurgerOrderDetails({burgerOptions,	showNutrition }: BurgerOrderDetailsProps) {
+export function BurgerOrderDetails({showNutrition }: BurgerOrderDetailsProps) {
+    const burgerData = useAppSelector(selectBurger);
+	const burgerOptions = burgerData.burger;
+
 	let totalPrice = 0;
 
 	const pricesByCategory = [];
