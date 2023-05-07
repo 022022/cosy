@@ -3,6 +3,7 @@
 @import url(./../BurgerOrderDetails/burgerOrderDetails.css);
 @import url(./../BurgerImage/burgerImage.css);
 
+
 .burger__wrapper {
 	background-color: #292929;
 	color: #dddddd;

@@ -7,10 +7,11 @@ export function BurgerOrderDetails({showNutrition }: BurgerOrderDetailsProps) {
     const burgerData = useAppSelector(selectBurger);
 	const burgerOptions = burgerData.burger;
 
+    const healthValueView: JSX.Element[] = [];
+
 	let totalPrice = 0;
 
 	const pricesByCategory = [];
-    const healthValueView: JSX.Element[] = [];
 
 	for (let i = 0; i < burgerOptions.length; i++) {
 		const category = burgerOptions[i];

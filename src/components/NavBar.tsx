@@ -5,41 +5,65 @@ import { NavLink } from 'react-router-dom';
 
 export function NavBar() {
 	return (
-		<Container>
 			<Navbar
-				collapseOnSelect
 				expand='lg'
 				bg='black'
 				variant='dark'
 				fixed='top'
+				collapseOnSelect
 			>
 				<Container>
-					<NavLink to='/' end>
+					<Nav.Link
+						to='/'
+						as={NavLink}
+						className='nav-link'
+						eventKey='0'
+						end
+					>
 						<Navbar.Brand>123Burger</Navbar.Brand>
-					</NavLink>
+					</Nav.Link>
 					<Navbar.Toggle aria-controls='responsive-navbar-nav' />
 					<Navbar.Collapse id='responsive-navbar-nav'>
 						<Nav className='me-auto'>
-							<NavLink to='/burger' className='nav-link'>
+							<Nav.Link
+								to='/burger'
+								as={NavLink}
+								className='nav-link'
+								eventKey='1'
+							>
 								Бургер
-							</NavLink>
+							</Nav.Link>
 
-							<NavLink to='/additions' className='nav-link'>
+							<Nav.Link
+								to='/additions'
+								as={NavLink}
+								className='nav-link'
+								eventKey='2'
+							>
 								К бургеру
-							</NavLink>
+							</Nav.Link>
 
-							<NavLink to='/' className='nav-link'>
+							<Nav.Link
+								to='/'
+								as={NavLink}
+								className='nav-link'
+								eventKey='3'
+							>
 								Доставка
-							</NavLink>
+							</Nav.Link>
 						</Nav>
 						<Nav>
-							<NavLink to='/order' className='nav-link'>
+							<Nav.Link
+								to='/order'
+								as={NavLink}
+								className='nav-link'
+								eventKey='4'
+							>
 								Мой заказ
-							</NavLink>
+							</Nav.Link>
 						</Nav>
 					</Navbar.Collapse>
 				</Container>
 			</Navbar>
-		</Container>
 	);
 }

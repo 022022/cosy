@@ -3,5 +3,11 @@
   --secondary-text: #c3c3c3;
 }
 
+main {
+    padding-top: 55px;
+    background-color: black;
+}
+
 @import url(./features/burger/BurgerConstructor/burgerConstructor.css);
+@import url(./features/order/order.css);
 @import url(./pages/Main/main.css);

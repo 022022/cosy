@@ -8,7 +8,7 @@ export function BurgerConstructor() {
 	const [showNutrition, setShowNutrition] = useState(false);
 
 	const containerMaxHeight = Math.max(
-		Math.min(window.innerHeight - 240, 600),
+		Math.min(window.innerHeight - 320, 600),
 		165
 	);
 
