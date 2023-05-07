@@ -2,11 +2,9 @@ export interface BurgerImageProps {
 	containerMaxHeight: number;
 }
 
-export enum BurgerOptionsType {'checkbox', 'radio'};
-
 export interface BurgerGroup {
 	category: string;
-	type: BurgerOptionsType;
+	type: 'checkbox' | 'radio' | 'switch';
 	options: BurgerOptions[];
 }
 
@@ -23,8 +21,13 @@ export interface BurgerOptions {
 	visual: {
 		width: number;
 		height: number;
-		bottom: null | {
+		bottom: {
 			id: string;
+			image: {
+				asset: {
+					_ref: string;
+				};
+			};
 			visual: { width: number; height: number };
 		};
 	};
@@ -61,5 +64,15 @@ export interface BurgerIngredientImageProps {
 
 export interface BurgerOrderDetailsProps {
 	showNutrition: boolean;
-	//burgerOptions: BurgerGroup[];
+}
+
+export interface ItemsVisible {
+	height: number;
+	width: number;
+	id: string;
+    image: {
+        asset: {
+            _ref: string;
+        }
+    }
 }

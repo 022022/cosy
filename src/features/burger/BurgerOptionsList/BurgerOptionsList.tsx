@@ -1,4 +1,4 @@
-import { BurgerOptionsListProps, BurgerOptionsType } from '../types/types';
+import { BurgerOptionsListProps } from '../types/types';
 import { BurgerIngredientDetails } from '../BurgerIngredientDetails/BurgerIngredientDetails';
 import Form from 'react-bootstrap/Form';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
@@ -7,11 +7,10 @@ import { selectBurger, toggleCheckbox, toggleRadio } from '../burgerSlice';
 export function BurgerOptionsList({
 	showNutrition,
 }: BurgerOptionsListProps) {
-
-    const burgerData = useAppSelector(selectBurger);
+	const burgerData = useAppSelector(selectBurger);
 	const burgerOptions = burgerData.burger;
 
-    const dispatch = useAppDispatch();
+	const dispatch = useAppDispatch();
 
 	const groups = burgerOptions.map((group, groupIndex) => (
 		<li key={`group-${groupIndex}`} className='burger__group'>
@@ -24,17 +23,13 @@ export function BurgerOptionsList({
 							key={`group-${groupIndex}-${index}`}
 						>
 							<Form.Check
-								type={
-									group.type === BurgerOptionsType.checkbox
-										? 'checkbox'
-										: 'radio'
-								}
+								type={group.type}
 								label={option.value}
 								name={String(groupIndex)}
 								id={option.id}
 								checked={option.added}
 								onChange={(e) => {
-                                    if ((e.target as HTMLInputElement).type === 'radio') {
+									if (group.type === 'radio') {
 										dispatch(
 											toggleRadio({
 												id: (
@@ -54,8 +49,7 @@ export function BurgerOptionsList({
 											})
 										);
 									}
-
-                                }}
+								}}
 							/>
 							<BurgerIngredientDetails
 								showNutrition={showNutrition}

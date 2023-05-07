@@ -1,5 +1,5 @@
 import { AnimatePresence } from 'framer-motion';
-import { BurgerImageProps } from '../types/types';
+import { BurgerImageProps, ItemsVisible } from '../types/types';
 import { BurgerIngredientImage } from './../BurgerIngredientImage/BurgerIngredientImage';
 import { useAppSelector } from '../../../app/hooks';
 import { selectBurger } from '../burgerSlice';
@@ -15,46 +15,54 @@ export function BurgerImage({ containerMaxHeight }: BurgerImageProps) {
     let containerWidth = 0;
 
 if (burgerOptions.length !== 0){
-    const itemsVisible = [];
+    const itemsVisible: ItemsVisible[] = [];
 	for (const group of burgerOptions) {
 		for (const option of group.options) {
 			if (option.added) {
-				itemsVisible.push(option);
-				//if (option.visual.bottom !== null) {
-				//	itemsVisible.push(option.visual.bottom);
-				//}
+				itemsVisible.push({ id: option.id, width: option.visual.width,
+                    height: option.visual.height, image: option.image });
+				if (option.visual.bottom) {
+					itemsVisible.push({
+						id: option.visual.bottom.id,
+						width: option.visual.bottom.visual.width,
+						height: option.visual.bottom.visual.height,
+						image: option.visual.bottom.image,
+					});
+				}
 			}
 		}
 	}
+
+    console.log('itemsVisible', itemsVisible)
 
 	itemsVisible.sort(
 		(a, b) => Number(a.id.slice(0, 2)) - Number(b.id.slice(0, 2))
 	);
 
 	const divisor = Math.floor(
-		itemsVisible[0].visual.width / presetFirstElementWidth
+		itemsVisible[0].width / presetFirstElementWidth
 	);
 
 	const offset = Math.floor(
 		(containerHeight -
-			itemsVisible[itemsVisible.length - 1].visual.height / divisor) /
+			itemsVisible[itemsVisible.length - 1].height / divisor) /
 			(itemsVisible.length - 1)
 	);
 
 	const firstElTopOffset = Math.floor(
-		itemsVisible[0].visual.height / divisor / 2
+		itemsVisible[0].height / divisor / 2
 	);
 
 	containerWidth = Math.max(
-		itemsVisible[0].visual.width / divisor,
-		itemsVisible[itemsVisible.length - 1].visual.width / divisor
+		itemsVisible[0].width / divisor,
+		itemsVisible[itemsVisible.length - 1].width / divisor
 	);
 
 	const firstEl = (
 		<BurgerIngredientImage
 			key={itemsVisible[0].id}
-			height={Math.floor(itemsVisible[0].visual.height / divisor)}
-			width={Math.floor(itemsVisible[0].visual.width / divisor)}
+			height={Math.floor(itemsVisible[0].height / divisor)}
+			width={Math.floor(itemsVisible[0].width / divisor)}
 			id={itemsVisible[0].id}
 			i={0}
 			top={0}
@@ -64,8 +72,8 @@ if (burgerOptions.length !== 0){
 	images.push(firstEl);
 
 	for (let i = 1; i < itemsVisible.length - 1; i++) {
-		const height = Math.floor(itemsVisible[i].visual.height / divisor);
-		const width = Math.floor(itemsVisible[i].visual.width / divisor);
+		const height = Math.floor(itemsVisible[i].height / divisor);
+		const width = Math.floor(itemsVisible[i].width / divisor);
 		containerWidth = Math.max(width, containerWidth);
 
 		const elCenter = Math.floor(height / 2);
@@ -93,15 +101,13 @@ if (burgerOptions.length !== 0){
 	const lastEl = (
 		<BurgerIngredientImage
 			key={itemsVisible[lastElIndex].id}
-			height={Math.floor(
-				itemsVisible[lastElIndex].visual.height / divisor
-			)}
-			width={Math.floor(itemsVisible[lastElIndex].visual.width / divisor)}
+			height={Math.floor(itemsVisible[lastElIndex].height / divisor)}
+			width={Math.floor(itemsVisible[lastElIndex].width / divisor)}
 			id={itemsVisible[lastElIndex].id}
 			i={lastElIndex}
 			top={
 				containerHeight -
-				Math.floor(itemsVisible[lastElIndex].visual.height / divisor)
+				Math.floor(itemsVisible[lastElIndex].height / divisor)
 			}
 			src={itemsVisible[lastElIndex].image.asset._ref}
 		></BurgerIngredientImage>

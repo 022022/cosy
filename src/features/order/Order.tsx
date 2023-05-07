@@ -34,7 +34,7 @@ export function Order() {
 
     totalOrder = totalOrder.map((category) => (
 		<p>
-			{category.category}: {category.ordered.map((item) => item.toLowerCase())}
+			{category.category}: {category.ordered.map((item) => item.toLowerCase()).join(', ')}
 		</p>
 	));
 
