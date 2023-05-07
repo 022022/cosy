@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from '../../app/store';
+import { RootState } from '../../app/store';
 import { fetchBurger } from '../../services/sanity/burger';
-import { BurgerGroup, BurgerOptions } from './types/types';
+import { BurgerGroup } from './types/types';
 
 export interface BurgerState {
 	burger: BurgerGroup[] | [];

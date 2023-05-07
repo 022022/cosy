@@ -2,7 +2,11 @@
 .burger__key {
     border-bottom: 1px dashed #7e7e7e;
     padding-bottom: 3px;
-    color: #a4a4a4;
+    color: var(--secondary-text);
+}
+
+.burger__value {
+    color: #fff;
 }
 
 .burger__order-details {

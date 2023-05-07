@@ -4,7 +4,7 @@
 @import url(./../BurgerImage/burgerImage.css);
 
 .burger__wrapper {
-	background-color: #0d0d0d;
+	background-color: #292929;
 	color: #dddddd;
 	justify-content: center;
 }
@@ -12,7 +12,7 @@
 .burger__order {
 	width: 500px;
 	display: flex;
-	background-color: #292929;
+	background-color: #464646;
 	position: fixed;
     height: 100vh;
 }

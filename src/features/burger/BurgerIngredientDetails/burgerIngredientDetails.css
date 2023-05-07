@@ -4,7 +4,7 @@
     justify-content: space-between;
     gap: 20px;
     justify-items: end;
-    color: #a4a4a4;
+    color: var(--secondary-text);
 }
 
 .burger__ingredient {

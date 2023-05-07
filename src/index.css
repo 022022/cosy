@@ -1,9 +1,7 @@
+:root {
+  --primary-text: #fff;
+  --secondary-text: #c3c3c3;
+}
+
 @import url(./features/burger/BurgerConstructor/burgerConstructor.css);
 @import url(./pages/Main/main.css);
-
-body {
-    background: url('./../public/images/aleisha-kalina.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100vh;
-}

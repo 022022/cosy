@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 export function NavBar() {
 	return (
-		<Navbar collapseOnSelect expand='lg' bg='dark' variant='dark' fixed="top">
+		<Navbar collapseOnSelect expand='lg' bg='black' variant='dark' fixed="top">
 			<Container>
 				<NavLink to='/' end>
 					<Navbar.Brand>123Burger</Navbar.Brand>

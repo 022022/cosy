@@ -31,12 +31,13 @@ export function Main(){
 						</Card>
 					</div>
 
-					<Button size='lg' >
+					<Button size='lg' className='btn btn-primary'>
 						Хочу бургер!
 					</Button>
-
 				</div>
 			</Container>
+
+			<div className='bg'></div>
 		</>
 	);
 }

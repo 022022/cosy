@@ -1,11 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { BurgerImage } from '../BurgerImage/BurgerImage';
 import { BurgerOptionsList } from './../BurgerOptionsList/BurgerOptionsList';
 import { BurgerOrderDetails } from './../BurgerOrderDetails/BurgerOrderDetails';
-import { BurgerOptionsType } from '../types/types';
 import { HealthyMode } from './../HealthyMode/HealthyMode';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { getBurger, selectBurger } from '../burgerSlice';
 
 export function BurgerConstructor() {
 	const [showNutrition, setShowNutrition] = useState(false);
