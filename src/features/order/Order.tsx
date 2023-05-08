@@ -1,14 +1,14 @@
-import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
 import { Link } from 'react-router-dom';
-
 import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Card from 'react-bootstrap/Card';
 import { useAppSelector } from '../../app/hooks';
 import { selectBurger } from '../burger/burgerSlice';
+import { useState } from 'react';
+import { AddRemoveButton } from '../../components/AddRemoveButton/AddRemoveButton';
 
 export function Order() {
+    const [burgerQuantity, setBurgerQuantity] = useState(1);
     const burgerData = useAppSelector(selectBurger);
 	const burgerOptions = burgerData.burger;
 
@@ -38,57 +38,44 @@ export function Order() {
 		</p>
 	));
 
-		return (
-			<div className='main'>
-				<Container className='d-flex flex-column gap-3 align-items-center py-4'>
-					<ul className='order-list'>
-						<li className='d-flex flex-column flex-sm-row justify-content-between align-items-center p-4p-4'>
-							<div> image</div>
-							<div className='d-flex w-100 flex-column'>
-								<Link
-									to='/additions'
-									className='nav-link fw-bold pb-4'
-								>
-									<h4>Авторский Бургер</h4>
-								</Link>
-								<div className='text-muted pb-4 pe-4'>
-									{totalOrder}
-								</div>
-								{totalPrice}
-							</div>
-							<div className='w-25'>
-								<ButtonGroup className='w-100'>
-									<Button
-										variant='secondary'
-										className='w-25'
-									>
-										-
-									</Button>
-									<div className='w-50'>1</div>
-									<Button
-										variant='secondary'
-										className='w-25'
-									>
-										+
-									</Button>
-								</ButtonGroup>
-							</div>
-						</li>
-					</ul>
 
-					<Card className='text-center w-100' bg='dark' text='light'>
-						<Card.Header>Заказ номер 32356</Card.Header>
-						<Card.Body className='p-4'>
-							<Card.Title>Сумма: {totalPrice} руб.</Card.Title>
-							<Button
-								variant='primary'
+	return (
+		<div className='main'>
+			<Container className='d-flex flex-column gap-3 align-items-center py-4'>
+				<ul className='order-list'>
+					<li className='d-flex flex-column flex-sm-row justify-content-between align-items-center p-4p-4'>
+						<div> image</div>
+						<div className='d-flex w-100 flex-column'>
+							<Link
+								to='/additions'
+								className='nav-link fw-bold pb-4'
 							>
-								Заказать
-							</Button>
-						</Card.Body>
-					</Card>
-				</Container>
+								<h4>Авторский Бургер</h4>
+							</Link>
+							<div className='text-muted pb-4 pe-4'>
+								{totalOrder}
+							</div>
+							{totalPrice * burgerQuantity}
+						</div>
+						<div className='w-25'>
+							<AddRemoveButton
+								quantity={burgerQuantity}
+								setQuantity={setBurgerQuantity}
+							/>
+						</div>
+					</li>
+				</ul>
 
-			</div>
-		);
+				<Card className='text-center w-100' bg='dark' text='light'>
+					<Card.Header>Заказ номер 32356</Card.Header>
+					<Card.Body className='p-4'>
+						<Card.Title>
+							Сумма: {totalPrice * burgerQuantity} руб.
+						</Card.Title>
+						<Button variant='primary'>Заказать</Button>
+					</Card.Body>
+				</Card>
+			</Container>
+		</div>
+	);
 }
