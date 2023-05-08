@@ -1,11 +1,11 @@
 import { AnimatePresence } from 'framer-motion';
-import { BurgerImageProps, ItemsVisible } from '../types/types';
+import { BurgerImageProps, ItemsVisible } from '../../../types/types';
 import { BurgerIngredientImage } from './../BurgerIngredientImage/BurgerIngredientImage';
 import { useAppSelector } from '../../../app/hooks';
-import { selectBurger } from '../burgerSlice';
+import { selectBurger } from '../../../features/burger/burgerSlice';
 
-export function BurgerImage({ containerMaxHeight }: BurgerImageProps) {
-    const presetFirstElementWidth = 190;
+export function BurgerImage({ containerMaxHeight, containerMaxWidth }: BurgerImageProps) {
+    const presetFirstElementWidth = containerMaxWidth;
     const containerHeight = containerMaxHeight;
 
     const burgerData = useAppSelector(selectBurger);

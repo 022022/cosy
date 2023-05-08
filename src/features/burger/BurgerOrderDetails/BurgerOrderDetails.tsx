@@ -1,5 +1,5 @@
 import Button from 'react-bootstrap/Button';
-import { BurgerOrderDetailsProps } from '../types/types';
+import { BurgerOrderDetailsProps } from '../../../types/types';
 import { useAppSelector } from '../../../app/hooks';
 import { selectBurger } from '../burgerSlice';
 

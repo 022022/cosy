@@ -1,4 +1,4 @@
-import { BurgerIngredientImageProps } from '../types/types';
+import { BurgerIngredientImageProps } from '../../../types/types';
 import { motion } from 'framer-motion';
 
 export function BurgerIngredientImage({

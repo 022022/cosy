@@ -11,3 +11,4 @@ main {
 @import url(./features/burger/BurgerConstructor/burgerConstructor.css);
 @import url(./features/order/order.css);
 @import url(./pages/Main/main.css);
+@import url(./components/BurgerImage/BurgerImage/burgerImage.css);

@@ -6,6 +6,7 @@ import { useAppSelector } from '../../app/hooks';
 import { selectBurger } from '../burger/burgerSlice';
 import { useState } from 'react';
 import { AddRemoveButton } from '../../components/AddRemoveButton/AddRemoveButton';
+import { BurgerImage } from '../../components/BurgerImage/BurgerImage/BurgerImage';
 
 export function Order() {
     const [burgerQuantity, setBurgerQuantity] = useState(1);
@@ -44,7 +45,12 @@ export function Order() {
 			<Container className='d-flex flex-column gap-3 align-items-center py-4'>
 				<ul className='order-list'>
 					<li className='d-flex flex-column flex-sm-row justify-content-between align-items-center p-4p-4'>
-						<div> image</div>
+						<div>
+							<BurgerImage
+								containerMaxHeight={160}
+								containerMaxWidth={70}
+							></BurgerImage>
+						</div>
 						<div className='d-flex w-100 flex-column'>
 							<Link
 								to='/additions'

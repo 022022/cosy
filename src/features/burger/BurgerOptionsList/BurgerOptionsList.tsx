@@ -1,4 +1,4 @@
-import { BurgerOptionsListProps } from '../types/types';
+import { BurgerOptionsListProps } from '../../../types/types';
 import { BurgerIngredientDetails } from '../BurgerIngredientDetails/BurgerIngredientDetails';
 import Form from 'react-bootstrap/Form';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';

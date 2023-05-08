@@ -1,7 +1,6 @@
 @import url(./../BurgerOptionsList/burgerOptionsList.css);
 @import url(./../BurgerIngredientDetails/burgerIngredientDetails.css);
 @import url(./../BurgerOrderDetails/burgerOrderDetails.css);
-@import url(./../BurgerImage/burgerImage.css);
 
 
 .burger__wrapper {

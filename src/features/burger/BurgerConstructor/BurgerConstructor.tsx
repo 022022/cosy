@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BurgerImage } from '../BurgerImage/BurgerImage';
+import { BurgerImage } from '../../../components/BurgerImage/BurgerImage/BurgerImage';
 import { BurgerOptionsList } from './../BurgerOptionsList/BurgerOptionsList';
 import { BurgerOrderDetails } from './../BurgerOrderDetails/BurgerOrderDetails';
 import { HealthyMode } from './../HealthyMode/HealthyMode';
@@ -11,6 +11,8 @@ export function BurgerConstructor() {
 		Math.min(window.innerHeight - 320, 600),
 		165
 	);
+
+    const containerMaxWidth = 190;
 
 	return (
 		<div className='burger__wrapper'>
@@ -24,6 +26,7 @@ export function BurgerConstructor() {
 				></BurgerOrderDetails>
 				<BurgerImage
 					containerMaxHeight={containerMaxHeight}
+					containerMaxWidth={containerMaxWidth}
 				></BurgerImage>
 			</div>
 
