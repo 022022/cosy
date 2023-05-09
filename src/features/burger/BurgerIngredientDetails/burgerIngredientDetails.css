@@ -27,11 +27,6 @@
     padding-bottom: 3px;
 }
 
-.burger__nutritional-value {
-    border-bottom: 1px dashed #7e7e7e;
-    padding-bottom: 3px;
-}
-
 .burger__group-contents {
     display: flex;
     flex-direction: column;

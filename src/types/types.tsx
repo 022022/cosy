@@ -49,14 +49,9 @@ export interface BurgerInfo {
 }
 
 export interface BurgerIngredientDetailsProps {
-	showNutrition: boolean;
 	option: BurgerOptions;
 }
 
-export interface BurgerOptionsListProps {
-    showNutrition: boolean;
-
-}
 
 export interface BurgerIngredientImageProps {
 	height: number;
@@ -67,9 +62,6 @@ export interface BurgerIngredientImageProps {
     src: string;
 }
 
-export interface BurgerOrderDetailsProps {
-	showNutrition: boolean;
-}
 
 export interface ItemsVisible {
 	height: number;

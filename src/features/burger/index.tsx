@@ -1,13 +1,9 @@
-import { useState } from 'react';
 import { BurgerImage } from '../../components/BurgerImage/BurgerImage/BurgerImage';
 import { BurgerOptionsList } from './BurgerOptionsList/BurgerOptionsList';
 import { BurgerOrderDetails } from './BurgerOrderDetails/BurgerOrderDetails';
-import { HealthyMode } from './HealthyMode/HealthyMode';
 import { Container } from 'react-bootstrap';
 
 export function BurgerConstructor() {
-	const [showNutrition, setShowNutrition] = useState(false);
-
 	const containerMaxHeight = Math.max(
 		Math.min(window.innerHeight - 320, 600),
 		165
@@ -18,14 +14,8 @@ export function BurgerConstructor() {
 	return (
 		<Container>
 			<div className='burger__wrapper'>
-				<HealthyMode
-					showNutrition={showNutrition}
-					setShowNutrition={setShowNutrition}
-				></HealthyMode>
 				<div className='burger__order'>
-					<BurgerOrderDetails
-						showNutrition={showNutrition}
-					></BurgerOrderDetails>
+					<BurgerOrderDetails/>
 					<div className='burger__visual'>
 						<BurgerImage
 							containerMaxHeight={containerMaxHeight}
@@ -34,9 +24,7 @@ export function BurgerConstructor() {
 					</div>
 				</div>
 
-				<BurgerOptionsList
-					showNutrition={showNutrition}
-				></BurgerOptionsList>
+				<BurgerOptionsList/>
 			</div>
 		</Container>
 	);

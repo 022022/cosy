@@ -1,12 +1,9 @@
-import { BurgerOptionsListProps } from '../../../types/types';
 import { BurgerIngredientDetails } from '../BurgerIngredientDetails/BurgerIngredientDetails';
 import Form from 'react-bootstrap/Form';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { selectBurger, toggleCheckbox, toggleRadio } from '../burgerSlice';
 
-export function BurgerOptionsList({
-	showNutrition,
-}: BurgerOptionsListProps) {
+export function BurgerOptionsList() {
 	const burgerData = useAppSelector(selectBurger);
 	const burgerOptions = burgerData.burger;
 
@@ -46,7 +43,6 @@ export function BurgerOptionsList({
 								}}
 							/>
 							<BurgerIngredientDetails
-								showNutrition={showNutrition}
 								option={option}
 								key={index}
 							/>
