@@ -17,23 +17,28 @@ export function BurgerImage({ containerMaxHeight, containerMaxWidth }: BurgerIma
 if (burgerOptions.length !== 0){
     const itemsVisible: ItemsVisible[] = [];
 	for (const group of burgerOptions) {
-		for (const option of group.options) {
-			if (option.added) {
-				itemsVisible.push({ id: option.id, width: option.visual.width,
-                    height: option.visual.height, image: option.image });
-				if (option.visual.bottom) {
-					itemsVisible.push({
-						id: option.visual.bottom.id,
-						width: option.visual.bottom.visual.width,
-						height: option.visual.bottom.visual.height,
-						image: option.visual.bottom.image,
-					});
-				}
-			}
-		}
-	}
+        if(group.showVisual) {
+            for (const option of group.options) {
+                if (option.added) {
+                    itemsVisible.push({
+                        id: option.id,
+                        width: option.visual.width,
+                        height: option.visual.height,
+                        image: option.image,
+                    });
+                    if (option.visual.bottom) {
+                        itemsVisible.push({
+                            id: option.visual.bottom.id,
+                            width: option.visual.bottom.visual.width,
+                            height: option.visual.bottom.visual.height,
+                            image: option.visual.bottom.image,
+                        });
+                    }
+                }
+            }
+        }
 
-    console.log('itemsVisible', itemsVisible)
+	}
 
 	itemsVisible.sort(
 		(a, b) => Number(a.id.slice(0, 2)) - Number(b.id.slice(0, 2))

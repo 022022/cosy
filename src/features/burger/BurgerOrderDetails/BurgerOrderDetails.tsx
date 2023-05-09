@@ -2,6 +2,7 @@ import Button from 'react-bootstrap/Button';
 import { BurgerOrderDetailsProps } from '../../../types/types';
 import { useAppSelector } from '../../../app/hooks';
 import { selectBurger } from '../burgerSlice';
+import { Link } from 'react-router-dom';
 
 export function BurgerOrderDetails({showNutrition }: BurgerOrderDetailsProps) {
     const burgerData = useAppSelector(selectBurger);
@@ -13,6 +14,8 @@ export function BurgerOrderDetails({showNutrition }: BurgerOrderDetailsProps) {
 
 	const pricesByCategory = [];
 
+    const nonVisualIngredients = [];
+
 	for (let i = 0; i < burgerOptions.length; i++) {
 		const category = burgerOptions[i];
 		let price = 0;
@@ -23,6 +26,25 @@ export function BurgerOrderDetails({showNutrition }: BurgerOrderDetailsProps) {
 			}
 		}
 
+        if (!category.showVisual) {
+            const added = category.options
+				.filter((option) => option.added)
+				.map((option) => option.value);
+
+            nonVisualIngredients.push(
+				<li key={i}>
+					<div className='burger__key'>{category.category} </div>
+					<div className='burger__value'>{
+                        added.length > 0 ? added.join(', ') : 'не добавлены'
+                        }
+                    </div>
+				</li>
+			);
+
+
+
+		}
+
         if(!showNutrition) {
             pricesByCategory.push(
                 <li key={i}>
@@ -31,6 +53,7 @@ export function BurgerOrderDetails({showNutrition }: BurgerOrderDetailsProps) {
                 </li>
             );
         }
+
 	}
 
     if (showNutrition) {
@@ -66,19 +89,21 @@ export function BurgerOrderDetails({showNutrition }: BurgerOrderDetailsProps) {
 	}
 
 
-
-
-
 	return (
 		<div className='burger__order-details'>
 			<ul className='burger__order-details-list'>
-				{showNutrition ? healthValueView : pricesByCategory}
+				{
+					/*showNutrition ? healthValueView : pricesByCategory */
+					nonVisualIngredients
+				}
 			</ul>
 			<div className='burger__price'>
 				<div className='burger__key'>Всего</div>
 				<div className='burger__value'>{totalPrice} руб.</div>
 			</div>
-			<Button size='lg'>Хочу!</Button>
+			<Link to='/order'>
+				<Button size='lg' className='w-100'>Хочу!</Button>
+			</Link>
 		</div>
 	);
 }

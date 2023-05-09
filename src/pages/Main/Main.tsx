@@ -1,12 +1,13 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
+import { Link } from 'react-router-dom';
 
 
 export function Main(){
     return (
 		<>
-			<Container >
+			<Container>
 				<div className='main'>
 					<div className='roadmap'>
 						<Card bg='dark' text='light'>
@@ -31,9 +32,11 @@ export function Main(){
 						</Card>
 					</div>
 
-					<Button size='lg' className='btn btn-primary'>
-						Хочу бургер!
-					</Button>
+					<Link to='/burger'>
+						<Button size='lg' className='btn btn-primary'>
+							Хочу бургер!
+						</Button>
+					</Link>
 				</div>
 			</Container>
 

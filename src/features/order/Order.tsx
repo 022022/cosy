@@ -56,12 +56,14 @@ export function Order() {
 								to='/additions'
 								className='nav-link fw-bold pb-4'
 							>
-								<h4>Авторский Бургер</h4>
+								<Link to='/burger'>
+									<h4>Авторский Бургер</h4>
+								</Link>
 							</Link>
 							<div className='text-muted pb-4 pe-4'>
 								{totalOrder}
 							</div>
-							{totalPrice * burgerQuantity}
+							{totalPrice * burgerQuantity} руб.
 						</div>
 						<div className='w-25'>
 							<AddRemoveButton

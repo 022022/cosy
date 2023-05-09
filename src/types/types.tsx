@@ -5,6 +5,7 @@ export interface BurgerImageProps {
 
 export interface BurgerGroup {
 	categoryId: string;
+    showVisual: boolean;
 	category: string;
 	sortOrder: number;
 	type: 'checkbox' | 'radio' | 'switch';
