@@ -7,13 +7,14 @@ import { Additions } from './pages/Additions/Additions';
 import { BurgerConstructor } from './features/burger/';
 
 import { useEffect } from 'react';
-import { useAppDispatch } from './app/hooks';
-import { getBurger } from './features/burger/burgerSlice';
+import { useAppDispatch, useAppSelector } from './app/hooks';
+import { getBurger, selectBurger } from './features/burger/burgerSlice';
 import { Order } from './features/order/Order';
 
 
 function App() {
     const dispatch = useAppDispatch();
+    const status = useAppSelector(selectBurger).status;
 
 	useEffect(() => {
 		dispatch(getBurger());
@@ -22,15 +23,27 @@ function App() {
 
 	return (
 		<>
-			<Routes>
-				<Route path='/' element={<Layout />}>
-					<Route index element={<Main />} />
-					<Route path='/burger' element={<BurgerConstructor />} />
-					<Route path='/additions' element={<Additions />} />
-					<Route path='/order' element={<Order />} />
-					<Route path='*' element={<Main />} />
-				</Route>
-			</Routes>
+			{status === 'failed' ? (
+				<div className='burger__load-error'>
+					<p className='text-muted lead'>
+						:(
+					</p>
+					<p className='w-50'>
+						У нас на сайте временные неполадки, зайдите, пожалуйста,
+						попозже
+					</p>
+				</div>
+			) : (
+				<Routes>
+					<Route path='/' element={<Layout />}>
+						<Route index element={<Main />} />
+						<Route path='/burger' element={<BurgerConstructor />} />
+						<Route path='/additions' element={<Additions />} />
+						<Route path='/order' element={<Order />} />
+						<Route path='*' element={<Main />} />
+					</Route>
+				</Routes>
+			)}
 		</>
 	);
 }

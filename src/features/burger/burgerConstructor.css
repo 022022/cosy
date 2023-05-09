@@ -98,8 +98,6 @@
 	}
 }
 
-
-
 @media (max-width: 400px) {
 	.burger__ingredient {
         flex-wrap: wrap;
@@ -107,7 +105,6 @@
 
 	.burger__ingredient-details {
 		display: flex;
-
 	}
 
     .burger__groups {
