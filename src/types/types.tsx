@@ -4,13 +4,16 @@ export interface BurgerImageProps {
 }
 
 export interface BurgerGroup {
+	categoryId: string;
 	category: string;
+	sortOrder: number;
 	type: 'checkbox' | 'radio' | 'switch';
 	options: BurgerOptions[];
 }
 
 export interface BurgerOptions {
 	id: string;
+    sortOrder: number;
 	value: string;
 	added: boolean;
 	info: BurgerInfo;

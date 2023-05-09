@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 import { fetchBurger } from '../../services/sanity/burger';
 import { BurgerGroup } from '../../types/types';
@@ -27,15 +27,15 @@ export const burgerSlice = createSlice({
 	reducers: {
 		toggleRadio: (state, action: PayloadAction<{id: string, name: string}>) => {
             for(let i = 0; i < state.burger.length; i++) {
-                if (i === Number(action.payload.name)){
+                if (state.burger[i].categoryId === action.payload.name) {
 					for (let j = 0; j < state.burger[i].options.length; j++) {
 						if (state.burger[i].options[j].id === action.payload.id) {
 							state.burger[i].options[j].added = true;
 						} else {
-                            state.burger[i].options[j].added = false;
-                        }
+							state.burger[i].options[j].added = false;
+						}
 					}
-                }
+				}
             }
 		},
         toggleCheckbox: (state, action: PayloadAction<{id: string}>) => {
@@ -68,6 +68,14 @@ export const burgerSlice = createSlice({
 
 export const { toggleRadio, toggleCheckbox } = burgerSlice.actions;
 
-export const selectBurger = (state: RootState) => state.burgerConstructor;
+export const selectBurger = createSelector(
+    [(state: RootState) => state.burgerConstructor],
+    (state) => {
+        return {
+            status: state.status,
+            burger: [...state.burger].sort((a, b) => a.sortOrder - b.sortOrder),
+        }
+    }
+);
 
 export default burgerSlice.reducer;

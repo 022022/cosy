@@ -12,40 +12,34 @@ export function BurgerOptionsList({
 
 	const dispatch = useAppDispatch();
 
-	const groups = burgerOptions.map((group, groupIndex) => (
-		<li key={`group-${groupIndex}`} className='burger__group'>
+	const groups = burgerOptions.map((group) => (
+		<li key={`group-${group.categoryId}`} className='burger__group'>
 			<h2> {group.category} </h2>
 			<ul className=''>
 				<Form className='burger__group-contents'>
 					{group.options.map((option, index) => (
 						<li
 							className='burger__ingredient'
-							key={`group-${groupIndex}-${index}`}
+							key={`group-${group.categoryId}-${option.id}`}
 						>
 							<Form.Check
 								type={group.type}
 								label={option.value}
-								name={String(groupIndex)}
+								name={group.categoryId}
 								id={option.id}
 								checked={option.added}
-								onChange={(e) => {
+								onChange={() => {
 									if (group.type === 'radio') {
 										dispatch(
 											toggleRadio({
-												id: (
-													e.target as HTMLInputElement
-												).id,
-												name: (
-													e.target as HTMLInputElement
-												).name,
+												id: option.id,
+												name: group.categoryId,
 											})
 										);
 									} else {
 										dispatch(
 											toggleCheckbox({
-												id: (
-													e.target as HTMLInputElement
-												).id,
+												id: option.id,
 											})
 										);
 									}
