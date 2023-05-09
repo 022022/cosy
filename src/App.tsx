@@ -4,7 +4,7 @@ import './scss/style.css';
 import { Route, Routes } from 'react-router';
 import Layout from './layouts/Layout';
 import { Additions } from './pages/Additions/Additions';
-import { BurgerConstructor } from './features/burger/BurgerConstructor/BurgerConstructor';
+import { BurgerConstructor } from './features/burger/';
 
 import { useEffect } from 'react';
 import { useAppDispatch } from './app/hooks';

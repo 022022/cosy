@@ -1,7 +1,6 @@
 .burger__image {
     display: flex;
     align-items: center;
-    padding: 0 40px 0 20px;
 }
 
 .burger__whole {

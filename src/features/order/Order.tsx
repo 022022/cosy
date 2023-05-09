@@ -44,7 +44,7 @@ export function Order() {
 		<div className='main'>
 			<Container className='d-flex flex-column gap-3 align-items-center py-4'>
 				<ul className='order-list'>
-					<li className='d-flex flex-column flex-sm-row justify-content-between align-items-center p-4p-4'>
+					<li className='d-flex gap-5 flex-column flex-sm-row justify-content-between align-items-center p-4'>
 						<div>
 							<BurgerImage
 								containerMaxHeight={160}
@@ -53,17 +53,14 @@ export function Order() {
 						</div>
 						<div className='d-flex w-100 flex-column'>
 							<Link
-								to='/additions'
+								to='/burger'
 								className='nav-link fw-bold pb-4'
 							>
-								<Link to='/burger'>
-									<h4>Авторский Бургер</h4>
-								</Link>
+								<h4>Авторский Бургер</h4>
 							</Link>
-							<div className='text-muted pb-4 pe-4'>
-								{totalOrder}
-							</div>
-							{totalPrice * burgerQuantity} руб.
+							<div className='pb-4 pe-4'>{totalOrder}</div>
+
+							<div className='lead'>{totalPrice * burgerQuantity} руб.</div>
 						</div>
 						<div className='w-25'>
 							<AddRemoveButton

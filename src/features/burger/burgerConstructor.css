@@ -1,6 +1,6 @@
-@import url(./../BurgerOptionsList/burgerOptionsList.css);
-@import url(./../BurgerIngredientDetails/burgerIngredientDetails.css);
-@import url(./../BurgerOrderDetails/burgerOrderDetails.css);
+@import url(./BurgerOptionsList/burgerOptionsList.css);
+@import url(./BurgerIngredientDetails/burgerIngredientDetails.css);
+@import url(./BurgerOrderDetails/burgerOrderDetails.css);
 
 
 .burger__wrapper {
@@ -15,6 +15,7 @@
 	background-color: #464646;
 	position: fixed;
     height: 100vh;
+    align-items: center;
 }
 
 @media (max-width: 1400px) {
@@ -34,24 +35,12 @@
 		width: 310px;
 		position: fixed;
         height: 100vh;
+        align-items: center;
 	}
 }
 
-@media (max-width: 1080px) {
-	.burger__ingredient {
-        flex-wrap: wrap;
-	}
 
-	.burger__ingredient-details {
-		justify-items: start;
-	}
-
-	.burger__ingredient-details:last-child {
-		justify-self: end;
-	}
-}
-
-@media (max-width: 900px) {
+@media (max-width: 992px) {
 	.burger__order {
 		width: 200px;
 		position: fixed;
@@ -83,6 +72,7 @@
     .burger__order-details {
         position: fixed;
         bottom: 0;
+        left: 0;
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -95,7 +85,7 @@
         padding: 0 40px;
     }
 
-	.burger__image {
+	.burger__visual {
 		display: none;
 	}
 
@@ -108,11 +98,7 @@
 	}
 }
 
-@media (max-width: 600px) {
-	.burger__ingredient {
-        flex-wrap: wrap;
-	}
-}
+
 
 @media (max-width: 400px) {
 	.burger__ingredient {
@@ -121,18 +107,14 @@
 
 	.burger__ingredient-details {
 		display: flex;
-		flex-direction: column;
-	}
-}
 
-@media (max-height: 460px) {
-	.burger__image {
-		display: none;
 	}
-}
 
-@media (max-height: 560px) {
-    .burger__order-details-list {
-        display: none;
+    .burger__groups {
+        padding: 0 10px;
+    }
+
+    .burger__group-contents {
+        width: min-content;
     }
 }

@@ -1,14 +1,16 @@
 :root {
   --primary-text: #fff;
   --secondary-text: #c3c3c3;
+  --primary-bg: #292929;
+  --secondary-bg: #464646;
 }
 
 main {
     padding-top: 55px;
-    background-color: black;
+    background-color: var(--primary-bg);
 }
 
-@import url(./features/burger/BurgerConstructor/burgerConstructor.css);
+@import url(./features/burger/burgerConstructor.css);
 @import url(./features/order/order.css);
 @import url(./pages/Main/main.css);
 @import url(./components/BurgerImage/BurgerImage/burgerImage.css);
