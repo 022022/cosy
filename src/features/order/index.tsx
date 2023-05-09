@@ -44,7 +44,7 @@ export function Order() {
 		<div className='main'>
 			<Container className='d-flex flex-column gap-3 align-items-center py-4'>
 				<ul className='order-list'>
-					<li className='d-flex gap-5 flex-column flex-sm-row justify-content-between align-items-center p-4'>
+					<li key='1' className='d-flex gap-5 flex-column flex-sm-row justify-content-between align-items-center p-4'>
 						<div>
 							<BurgerImage
 								containerMaxHeight={160}

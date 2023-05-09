@@ -9,7 +9,7 @@ import { BurgerConstructor } from './features/burger/';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from './app/hooks';
 import { getBurger, selectBurger } from './features/burger/burgerSlice';
-import { Order } from './features/order/Order';
+import { Order } from './features/order';
 
 
 function App() {
