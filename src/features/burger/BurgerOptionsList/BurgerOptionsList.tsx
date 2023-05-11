@@ -1,11 +1,13 @@
 import { BurgerIngredientDetails } from '../BurgerIngredientDetails/BurgerIngredientDetails';
 import Form from 'react-bootstrap/Form';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { selectBurger, toggleCheckbox, toggleRadio } from '../burgerSlice';
+import { addToOrder, removeFromOrder, selectBurger } from '../burgerSlice';
 
-export function BurgerOptionsList() {
+export function BurgerOptionsList({ orderId }: { orderId: string }) {
 	const burgerData = useAppSelector(selectBurger);
 	const burgerOptions = burgerData.burger;
+
+    const added = new Set(burgerData.burgerOrders.find((item) => item.orderId === orderId)?.ingredients);
 
 	const dispatch = useAppDispatch();
 
@@ -24,21 +26,19 @@ export function BurgerOptionsList() {
 								label={option.value}
 								name={group.categoryId}
 								id={option.id}
-								checked={option.added}
+								checked={added.has(option.id)}
 								onChange={() => {
 									if (group.type === 'radio') {
-										dispatch(
-											toggleRadio({
-												id: option.id,
-												name: group.categoryId,
-											})
-										);
+                                        for(const opt of group.options) {
+                                            dispatch(removeFromOrder({orderId, ingredients: [opt.id]}));
+                                        }
+                                        dispatch(addToOrder({orderId, ingredients: [option.id]}))
 									} else {
-										dispatch(
-											toggleCheckbox({
-												id: option.id,
-											})
-										);
+                                        if(added.has(option.id)){
+                                            dispatch(removeFromOrder({orderId, ingredients: [option.id]}))
+                                        } else {
+                                            dispatch(addToOrder({ orderId, ingredients: [option.id] }));
+                                        }
 									}
 								}}
 							/>

@@ -4,12 +4,16 @@ import { BurgerIngredientImage } from './../BurgerIngredientImage/BurgerIngredie
 import { useAppSelector } from '../../../app/hooks';
 import { selectBurger } from '../../../features/burger/burgerSlice';
 
-export function BurgerImage({ containerMaxHeight, containerMaxWidth }: BurgerImageProps) {
+export function BurgerImage({ containerMaxHeight, containerMaxWidth, orderId }: BurgerImageProps) {
     const presetFirstElementWidth = containerMaxWidth;
     const containerHeight = containerMaxHeight;
 
+
     const burgerData = useAppSelector(selectBurger);
 	const burgerOptions = burgerData.burger;
+
+    const added = new Set(burgerData.burgerOrders.find((item) => item.orderId === orderId)?.ingredients);
+
 
     const images = [];
     let containerWidth = 0;
@@ -19,7 +23,7 @@ if (burgerOptions.length !== 0){
 	for (const group of burgerOptions) {
         if(group.showVisual) {
             for (const option of group.options) {
-                if (option.added) {
+                if (added.has(option.id)) {
                     itemsVisible.push({
                         id: option.id,
                         width: option.visual.width,

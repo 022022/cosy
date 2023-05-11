@@ -26,7 +26,7 @@ export function NavBar() {
 					<Navbar.Collapse id='responsive-navbar-nav'>
 						<Nav className='me-auto'>
 							<Nav.Link
-								to='/burger'
+								to='/burger/new'
 								as={NavLink}
 								className='nav-link'
 								eventKey='1'

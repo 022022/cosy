@@ -37,7 +37,7 @@ function App() {
 				<Routes>
 					<Route path='/' element={<Layout />}>
 						<Route index element={<Main />} />
-						<Route path='/burger' element={<BurgerConstructor />} />
+						<Route path='/burger/:id' element={<BurgerConstructor />} />
 						<Route path='/additions' element={<Additions />} />
 						<Route path='/order' element={<Order />} />
 						<Route path='*' element={<Main />} />

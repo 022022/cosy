@@ -1,9 +1,16 @@
+import { useParams } from 'react-router-dom';
 import { BurgerImage } from '../../components/BurgerImage/BurgerImage/BurgerImage';
 import { BurgerOptionsList } from './BurgerOptionsList/BurgerOptionsList';
 import { BurgerOrderDetails } from './BurgerOrderDetails/BurgerOrderDetails';
 import { Container } from 'react-bootstrap';
+import { useAppSelector } from '../../app/hooks';
+import { selectBurger } from './burgerSlice';
 
 export function BurgerConstructor() {
+    const burgerState = useAppSelector(selectBurger);
+    let { id } = useParams();
+    if(!id) id = 'new';
+
 	const containerMaxHeight = Math.max(
 		Math.min(window.innerHeight - 320, 600),
 		165
@@ -15,16 +22,17 @@ export function BurgerConstructor() {
 		<Container>
 			<div className='burger__wrapper'>
 				<div className='burger__order'>
-					<BurgerOrderDetails/>
+					<BurgerOrderDetails orderId={id} />
 					<div className='burger__visual'>
 						<BurgerImage
 							containerMaxHeight={containerMaxHeight}
 							containerMaxWidth={containerMaxWidth}
+							orderId={id}
 						></BurgerImage>
 					</div>
 				</div>
 
-				<BurgerOptionsList/>
+				<BurgerOptionsList orderId={id} />
 			</div>
 		</Container>
 	);

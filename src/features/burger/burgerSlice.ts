@@ -1,15 +1,27 @@
-import { createAsyncThunk, createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSelector, createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 import { fetchBurger } from '../../services/sanity/burger';
 import { BurgerGroup } from '../../types/types';
 
 export interface BurgerState {
 	burger: BurgerGroup[] | [];
+	burgerOrders: BurgerOrder[];
 	status: 'idle' | 'loading' | 'failed';
+}
+
+interface BurgerOrder {
+	orderId: string;
+	quantity: number;
+	ingredients: string[];
 }
 
 const initialState:BurgerState = {
     burger: [],
+    burgerOrders: [{
+        orderId: 'new',
+        quantity: 1,
+        ingredients: ['01_bread-sesame-top', '07_beef', 'salt']
+    }],
     status: 'idle',
 }
 
@@ -25,28 +37,54 @@ export const burgerSlice = createSlice({
 	name: 'burger',
 	initialState,
 	reducers: {
-		toggleRadio: (state, action: PayloadAction<{id: string, name: string}>) => {
-            for(let i = 0; i < state.burger.length; i++) {
-                if (state.burger[i].categoryId === action.payload.name) {
-					for (let j = 0; j < state.burger[i].options.length; j++) {
-						if (state.burger[i].options[j].id === action.payload.id) {
-							state.burger[i].options[j].added = true;
-						} else {
-							state.burger[i].options[j].added = false;
-						}
-					}
-				}
-            }
+		finalizeOrder: (
+			state,
+			action: PayloadAction<{ orderId: string; ingredients: string[] }>
+		) => {
+			if (action.payload.orderId !== 'new') {
+				const currentOrder = state.burgerOrders.find(
+					(item) => item.orderId === action.payload.orderId
+				);
+				if (currentOrder)
+					currentOrder.ingredients.push(
+						...action.payload.ingredients
+					);
+			} else {
+				state.burgerOrders.push({
+					orderId: nanoid(),
+					ingredients: action.payload.ingredients,
+					quantity: 1,
+				});
+			}
 		},
-        toggleCheckbox: (state, action: PayloadAction<{id: string}>) => {
-            for(let i = 0; i < state.burger.length; i++) {
-                for (let j = 0; j < state.burger[i].options.length; j++) {
-                    if (state.burger[i].options[j].id === action.payload.id) {
-                        state.burger[i].options[j].added = !state.burger[i].options[j].added;
-                    }
-                }
-            }
-        }
+		setQuantity: (state, action: PayloadAction<{ orderId: string, quantity: number }>) => {
+			const currentOrder = state.burgerOrders.find(
+				(item) => item.orderId === action.payload.orderId
+			);
+			if (currentOrder) currentOrder.quantity = action.payload.quantity;
+		},
+		addToOrder: (
+			state,
+			action: PayloadAction<{ orderId: string; ingredients: string[] }>
+		) => {
+			const currentOrder = state.burgerOrders.find(
+				(item) => item.orderId === action.payload.orderId
+			);
+			if (currentOrder)
+				currentOrder.ingredients.push(...action.payload.ingredients);
+		},
+		removeFromOrder: (
+			state,
+			action: PayloadAction<{ orderId: string; ingredients: string[] }>
+		) => {
+			const currentOrder = state.burgerOrders.find(
+				(item) => item.orderId === action.payload.orderId
+			);
+			if (currentOrder)
+				currentOrder.ingredients = currentOrder.ingredients.filter(
+					(item) => !action.payload.ingredients.includes(item)
+				);
+		},
 	},
 	extraReducers: (builder) => {
 		builder
@@ -66,13 +104,15 @@ export const burgerSlice = createSlice({
 	},
 });
 
-export const { toggleRadio, toggleCheckbox } = burgerSlice.actions;
+export const { addToOrder, removeFromOrder, finalizeOrder, setQuantity } =
+	burgerSlice.actions;
 
 export const selectBurger = createSelector(
     [(state: RootState) => state.burgerConstructor],
     (state) => {
         return {
             status: state.status,
+            burgerOrders: state.burgerOrders,
             burger: [...state.burger].sort((a, b) => a.sortOrder - b.sortOrder),
         }
     }

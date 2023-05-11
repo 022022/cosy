@@ -1,6 +1,7 @@
 export interface BurgerImageProps {
 	containerMaxHeight: number;
     containerMaxWidth: number;
+    orderId: string;
 }
 
 export interface BurgerGroup {

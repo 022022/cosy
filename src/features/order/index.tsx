@@ -4,78 +4,74 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useAppSelector } from '../../app/hooks';
 import { selectBurger } from '../burger/burgerSlice';
-import { useState } from 'react';
-import { AddRemoveButton } from '../../components/AddRemoveButton/AddRemoveButton';
-import { BurgerImage } from '../../components/BurgerImage/BurgerImage/BurgerImage';
+import { OrderItem } from './OrderItem/OrderItem';
 
 export function Order() {
-    const [burgerQuantity, setBurgerQuantity] = useState(1);
     const burgerData = useAppSelector(selectBurger);
 	const burgerOptions = burgerData.burger;
+    const burgerOrders = burgerData.burgerOrders;
 
-    let totalOrder = [];
-    let totalPrice = 0;
+    let orderSum = 0
+    const allOrders = [];
 
     if (burgerOptions.length !== 0){
-        for (const group of burgerOptions) {
-            const categoryOrder: {category: string, ordered: string[]} = {
-                category: group.category, ordered: []
-            };
-            for (const option of group.options) {
-                if (option.added) {
-                    totalPrice += option.info.cost;
-                    categoryOrder.ordered.push(option.value);
-                }
-            }
-            if(categoryOrder.ordered.length !== 0) {
-                totalOrder.push(categoryOrder);
-            }
-        }
-    }
 
-    totalOrder = totalOrder.map((category) => (
-		<p>
-			{category.category}: {category.ordered.map((item) => item.toLowerCase()).join(', ')}
-		</p>
-	));
+        for(const order of burgerOrders) {
+            if(order.orderId === 'new') continue;
+            let totalOrder = [];
+            let totalPrice = 0;
+			for (const group of burgerOptions) {
+				const categoryOrder: { category: string; ordered: string[] } = {
+					category: group.category,
+					ordered: [],
+				};
+				for (const option of group.options) {
+					if (order.ingredients.includes(option.id)) {
+						totalPrice += option.info.cost;
+						categoryOrder.ordered.push(option.value);
+					}
+				}
+				if (categoryOrder.ordered.length !== 0) {
+					totalOrder.push(categoryOrder);
+				}
+			}
+
+			totalOrder = totalOrder.map((category) => (
+				<p key={category.category}>
+					{category.category}:{' '}
+					{category.ordered
+						.map((item) => item.toLowerCase())
+						.join(', ')}
+				</p>
+			));
+
+            orderSum += totalPrice * order.quantity;
+
+			allOrders.push(
+				<OrderItem
+					key={order.orderId}
+					orderId={order.orderId}
+					orderQuantity={order.quantity}
+					totalOrder={totalOrder}
+					totalPrice={totalPrice}
+				></OrderItem>
+			);
+		}
+    }
 
 
 	return (
 		<div className='main'>
 			<Container className='d-flex flex-column gap-3 align-items-center py-4'>
 				<ul className='order-list'>
-					<li key='1' className='d-flex gap-5 flex-column flex-sm-row justify-content-between align-items-center p-4'>
-						<div>
-							<BurgerImage
-								containerMaxHeight={160}
-								containerMaxWidth={70}
-							></BurgerImage>
-						</div>
-						<div className='d-flex w-100 flex-column'>
-							<Link
-								to='/burger'
-								className='nav-link fw-bold pb-4'
-							>
-								<h4>Авторский Бургер</h4>
-							</Link>
-							<div className='pb-4 pe-4'>{totalOrder}</div>
-
-							<div className='lead'>{totalPrice * burgerQuantity} руб.</div>
-						</div>
-						<div className='w-25'>
-							<AddRemoveButton
-								quantity={burgerQuantity}
-								setQuantity={setBurgerQuantity}
-							/>
-						</div>
-					</li>
+                    {allOrders}
 				</ul>
 
 				<Card className='text-center w-100' bg='dark' text='light'>
 					<Card.Header>Заказ номер 32356</Card.Header>
 					<Card.Body className='p-4'>
 						<Card.Title>
-							Сумма: {totalPrice * burgerQuantity} руб.
+							Сумма: {orderSum} руб.
 						</Card.Title>
 						<Button variant='primary'>Заказать</Button>
 					</Card.Body>
