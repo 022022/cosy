@@ -9,6 +9,7 @@ export function Main(){
 		<>
 			<Container>
 				<div className='main'>
+					<h1>Создай свой авторский бургер!</h1>
 					<div className='roadmap'>
 						<Card bg='dark' text='light'>
 							<Card.Body>
@@ -31,7 +32,6 @@ export function Main(){
 							</Card.Body>
 						</Card>
 					</div>
-
 					<Link to='/burger/new'>
 						<Button size='lg' className='btn btn-primary'>
 							Хочу бургер!

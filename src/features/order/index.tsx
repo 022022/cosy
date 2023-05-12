@@ -3,17 +3,15 @@ import Button from 'react-bootstrap/Button';
 import { useAppSelector } from '../../app/hooks';
 import { selectBurger, selectBurgerOrders } from '../burger/burgerSlice';
 import { OrderItem } from './OrderItem/OrderItem';
+import { Link, Navigate } from 'react-router-dom';
 
 export function Order() {
     const burgerOptions = useAppSelector(selectBurger);
     const burgerOrders = useAppSelector(selectBurgerOrders);
-
-    let orderSum = 0
+    let orderSum = 0;
     const allOrders = [];
 
-    if (burgerOptions.length !== 0){
-
-        for(const order of burgerOrders) {
+    for(const order of burgerOrders) {
             if(order.orderId === 'new') continue;
             let totalPrice = 0;
             let ingredients = [];
@@ -53,23 +51,36 @@ export function Order() {
 					totalPrice={totalPrice}
 				></OrderItem>
 			);
-		}
-    }
-
+	}
 
 	return (
 		<div className='main'>
 			<Container className='d-flex flex-column gap-3 align-items-center py-4'>
-				<ul className='order-list'>{allOrders}</ul>
+				{burgerOrders.length <= 1 ? (
+					<>
+						<p className='lead text-light'>
+							Создай свой авторский бургер!
+						</p>
+						<Link to='/burger/new'>
+							<Button size='lg' className='btn btn-primary'>
+								Хочу бургер!
+							</Button>
+						</Link>
+					</>
+				) : (
+					<>
+						<ul className='order-list'>{allOrders}</ul>
 
-				<div className='my-4 d-flex flex-column gap-3 align-items-center'>
-					<p className='order-list__sum lead'>
-						Сумма: {orderSum} руб.
-					</p>
-					<Button variant='primary' size='lg'>
-						Заказать
-					</Button>
-				</div>
+						<div className='my-4 d-flex flex-column gap-3 align-items-center'>
+							<p className='order-list__sum lead'>
+								Сумма: {orderSum} руб.
+							</p>
+							<Button variant='primary' size='lg'>
+								Заказать
+							</Button>
+						</div>
+					</>
+				)}
 			</Container>
 		</div>
 	);

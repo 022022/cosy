@@ -88,18 +88,20 @@ export const burgerSlice = createSlice({
 					state.status = 'idle';
 					state.burger = action.payload;
 
-                    const defaultIngredients = [];
-                    for (const group of action.payload){
-                        for (const opt of group.options){
-                            if (opt.added) defaultIngredients.push(opt.id);
+                    if(state.burgerOrders.length === 0) {
+                        const defaultIngredients = [];
+                        for (const group of action.payload) {
+                            for (const opt of group.options) {
+                                if (opt.added) defaultIngredients.push(opt.id);
+                            }
                         }
-                    }
 
-                    state.burgerOrders.push({
-						orderId: 'new',
-						quantity: 1,
-						ingredients: defaultIngredients,
-					});
+                        state.burgerOrders.push({
+                            orderId: 'new',
+                            quantity: 1,
+                            ingredients: defaultIngredients,
+                        });
+                    }
 				}
 			)
 			.addCase(getBurger.rejected, (state) => {

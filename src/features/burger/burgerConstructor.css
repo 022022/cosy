@@ -2,7 +2,6 @@
 @import url(./BurgerIngredientDetails/burgerIngredientDetails.css);
 @import url(./BurgerOrderDetails/burgerOrderDetails.css);
 
-
 .burger__wrapper {
 	background-color: #292929;
 	color: #dddddd;
@@ -16,6 +15,10 @@
 	position: fixed;
     height: 100vh;
     align-items: center;
+}
+
+.burger__options {
+    margin-left: 420px;
 }
 
 @media (max-width: 1400px) {
@@ -61,6 +64,7 @@
 
 	.burger__order {
 		background-color: transparent;
+		width: 200px;
 	}
 
 	.burger__options {
@@ -69,6 +73,9 @@
 }
 
 @media (max-width: 767px) {
+    .burger__order {
+		width: 0;
+    }
     .burger__order-details {
         position: fixed;
         bottom: 0;
@@ -99,6 +106,9 @@
 }
 
 @media (max-width: 400px) {
+    .burger__order {
+		width: 0;
+    }
 	.burger__ingredient {
         flex-wrap: wrap;
 	}
@@ -114,4 +124,7 @@
     .burger__group-contents {
         width: min-content;
     }
+    .burger__options {
+		margin-left: 0;
+	}
 }

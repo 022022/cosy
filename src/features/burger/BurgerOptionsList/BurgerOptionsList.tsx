@@ -25,21 +25,42 @@ export function BurgerOptionsList({ orderId }: { orderId: string }) {
 							<Form.Check
 								type={group.type}
 								label={option.value}
+								title={option.value}
 								name={group.categoryId}
 								id={option.id}
 								checked={added.has(option.id)}
 								onChange={() => {
 									if (group.type === 'radio') {
-                                        for(const opt of group.options) {
-                                            dispatch(removeFromOrder({orderId, ingredients: [opt.id]}));
-                                        }
-                                        dispatch(addToOrder({orderId, ingredients: [option.id]}))
+										for (const opt of group.options) {
+											dispatch(
+												removeFromOrder({
+													orderId,
+													ingredients: [opt.id],
+												})
+											);
+										}
+										dispatch(
+											addToOrder({
+												orderId,
+												ingredients: [option.id],
+											})
+										);
 									} else {
-                                        if(added.has(option.id)){
-                                            dispatch(removeFromOrder({orderId, ingredients: [option.id]}))
-                                        } else {
-                                            dispatch(addToOrder({ orderId, ingredients: [option.id] }));
-                                        }
+										if (added.has(option.id)) {
+											dispatch(
+												removeFromOrder({
+													orderId,
+													ingredients: [option.id],
+												})
+											);
+										} else {
+											dispatch(
+												addToOrder({
+													orderId,
+													ingredients: [option.id],
+												})
+											);
+										}
 									}
 								}}
 							/>
