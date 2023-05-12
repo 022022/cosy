@@ -3,11 +3,8 @@ import { BurgerImage } from '../../components/BurgerImage/BurgerImage/BurgerImag
 import { BurgerOptionsList } from './BurgerOptionsList/BurgerOptionsList';
 import { BurgerOrderDetails } from './BurgerOrderDetails/BurgerOrderDetails';
 import { Container } from 'react-bootstrap';
-import { useAppSelector } from '../../app/hooks';
-import { selectBurger } from './burgerSlice';
 
 export function BurgerConstructor() {
-    const burgerState = useAppSelector(selectBurger);
     let { id } = useParams();
     if(!id) id = 'new';
 

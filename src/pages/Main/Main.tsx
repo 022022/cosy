@@ -32,7 +32,7 @@ export function Main(){
 						</Card>
 					</div>
 
-					<Link to='/burger'>
+					<Link to='/burger/new'>
 						<Button size='lg' className='btn btn-primary'>
 							Хочу бургер!
 						</Button>

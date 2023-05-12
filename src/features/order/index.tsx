@@ -1,5 +1,4 @@
 import Container from 'react-bootstrap/Container';
-import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useAppSelector } from '../../app/hooks';
@@ -18,8 +17,8 @@ export function Order() {
 
         for(const order of burgerOrders) {
             if(order.orderId === 'new') continue;
-            let totalOrder = [];
             let totalPrice = 0;
+            let ingredients = [];
 			for (const group of burgerOptions) {
 				const categoryOrder: { category: string; ordered: string[] } = {
 					category: group.category,
@@ -32,17 +31,17 @@ export function Order() {
 					}
 				}
 				if (categoryOrder.ordered.length !== 0) {
-					totalOrder.push(categoryOrder);
+					ingredients.push(categoryOrder);
 				}
 			}
 
-			totalOrder = totalOrder.map((category) => (
-				<p key={category.category}>
+			const orderDescription = ingredients.map((category) => (
+				<li key={category.category}>
 					{category.category}:{' '}
 					{category.ordered
 						.map((item) => item.toLowerCase())
 						.join(', ')}
-				</p>
+				</li>
 			));
 
             orderSum += totalPrice * order.quantity;
@@ -52,7 +51,7 @@ export function Order() {
 					key={order.orderId}
 					orderId={order.orderId}
 					orderQuantity={order.quantity}
-					totalOrder={totalOrder}
+					orderDescription={orderDescription}
 					totalPrice={totalPrice}
 				></OrderItem>
 			);
@@ -67,7 +66,7 @@ export function Order() {
                     {allOrders}
 				</ul>
 
-				<Card className='text-center w-100' bg='dark' text='light'>
+				<Card className='text-center' bg='dark' text='light'>
 					<Card.Header>Заказ номер 32356</Card.Header>
 					<Card.Body className='p-4'>
 						<Card.Title>

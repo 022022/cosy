@@ -37,18 +37,10 @@ export const burgerSlice = createSlice({
 	name: 'burger',
 	initialState,
 	reducers: {
-		finalizeOrder: (
-			state,
-			action: PayloadAction<{ orderId: string; ingredients: string[] }>
-		) => {
+		finalizeOrder: (state,action: PayloadAction<{ orderId: string; ingredients: string[] }>	) => {
 			if (action.payload.orderId !== 'new') {
-				const currentOrder = state.burgerOrders.find(
-					(item) => item.orderId === action.payload.orderId
-				);
-				if (currentOrder)
-					currentOrder.ingredients.push(
-						...action.payload.ingredients
-					);
+				const currentOrder = state.burgerOrders.find((item) => item.orderId === action.payload.orderId);
+				if (currentOrder) currentOrder.ingredients = action.payload.ingredients;
 			} else {
 				state.burgerOrders.push({
 					orderId: nanoid(),
