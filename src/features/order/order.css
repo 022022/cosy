@@ -9,12 +9,10 @@
     flex-direction: column;
 }
 
-
-.order-list h4 {
-    border-bottom: var(--secondary-text) solid 1px;
-    padding-bottom: 4px;
-}
-
 .main {
     min-height: calc(100vh - 55px);
+}
+
+.order-list__sum {
+        color: var(--primary-text);
 }

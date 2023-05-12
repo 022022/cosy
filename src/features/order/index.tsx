@@ -62,19 +62,16 @@ export function Order() {
 	return (
 		<div className='main'>
 			<Container className='d-flex flex-column gap-3 align-items-center py-4'>
-				<ul className='order-list'>
-                    {allOrders}
-				</ul>
+				<ul className='order-list'>{allOrders}</ul>
 
-				<Card className='text-center' bg='dark' text='light'>
-					<Card.Header>Заказ номер 32356</Card.Header>
-					<Card.Body className='p-4'>
-						<Card.Title>
-							Сумма: {orderSum} руб.
-						</Card.Title>
-						<Button variant='primary'>Заказать</Button>
-					</Card.Body>
-				</Card>
+				<div className='my-4 d-flex flex-column gap-3 align-items-center'>
+					<p className='order-list__sum lead'>
+						Сумма: {orderSum} руб.
+					</p>
+					<Button variant='primary' size='lg'>
+						Заказать
+					</Button>
+				</div>
 			</Container>
 		</div>
 	);

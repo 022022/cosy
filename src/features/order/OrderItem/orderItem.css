@@ -12,3 +12,18 @@
     text-decoration: underline;
     color: var(--primary-text);
 }
+
+.order-list__confirmation {
+    background-color: var(--primary-bg);
+    border-radius: 4px;
+    position: absolute;
+    padding: 16px;
+    z-index: 1000;
+    display: flex;
+    flex-wrap: wrap;
+    width: 190px;
+    gap: 10px;
+    left: -30px;
+    margin-top: 10px;
+    justify-content: center;
+}

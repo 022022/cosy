@@ -49,6 +49,9 @@ export const burgerSlice = createSlice({
 				});
 			}
 		},
+        removeBurger: (state, action: PayloadAction<{ orderId: string }>) => {
+            state.burgerOrders = state.burgerOrders.filter((item) => item.orderId !== action.payload.orderId);
+        },
 		setQuantity: (state, action: PayloadAction<{ orderId: string, quantity: number }>) => {
 			const currentOrder = state.burgerOrders.find(
 				(item) => item.orderId === action.payload.orderId
@@ -96,7 +99,7 @@ export const burgerSlice = createSlice({
 	},
 });
 
-export const { addToOrder, removeFromOrder, finalizeOrder, setQuantity } =
+export const { addToOrder, removeFromOrder, finalizeOrder, removeBurger, setQuantity } =
 	burgerSlice.actions;
 
 export const selectBurger = createSelector(

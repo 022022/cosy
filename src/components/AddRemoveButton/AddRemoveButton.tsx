@@ -12,7 +12,7 @@ export function AddRemoveButton({
 			<Button
 				variant='secondary'
 				onClick={() => {
-					quantity > 1 && setQuantity(quantity - 1);
+					setQuantity(quantity - 1);
 				}}
 			>
 				−
