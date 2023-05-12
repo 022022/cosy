@@ -17,11 +17,7 @@ interface BurgerOrder {
 
 const initialState:BurgerState = {
     burger: [],
-    burgerOrders: [{
-        orderId: 'new',
-        quantity: 1,
-        ingredients: ['01_bread-sesame-top', '07_beef', 'salt']
-    }],
+    burgerOrders: [],
     status: 'idle',
 }
 
@@ -91,6 +87,19 @@ export const burgerSlice = createSlice({
 				(state, action: PayloadAction<BurgerGroup[]>) => {
 					state.status = 'idle';
 					state.burger = action.payload;
+
+                    const defaultIngredients = [];
+                    for (const group of action.payload){
+                        for (const opt of group.options){
+                            if (opt.added) defaultIngredients.push(opt.id);
+                        }
+                    }
+
+                    state.burgerOrders.push({
+						orderId: 'new',
+						quantity: 1,
+						ingredients: defaultIngredients,
+					});
 				}
 			)
 			.addCase(getBurger.rejected, (state) => {
