@@ -1,13 +1,14 @@
 import { BurgerIngredientDetails } from '../BurgerIngredientDetails/BurgerIngredientDetails';
 import Form from 'react-bootstrap/Form';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { addToOrder, removeFromOrder, selectBurger } from '../burgerSlice';
+import { addToOrder, removeFromOrder, selectBurger, selectBurgerOrderById, selectBurgerOrders } from '../burgerSlice';
 
 export function BurgerOptionsList({ orderId }: { orderId: string }) {
-	const burgerData = useAppSelector(selectBurger);
-	const burgerOptions = burgerData.burger;
+	const burgerOptions = useAppSelector(selectBurger);
 
-    const added = new Set(burgerData.burgerOrders.find((item) => item.orderId === orderId)?.ingredients);
+    const added = useAppSelector((state) =>
+		selectBurgerOrderById(state, orderId)
+	);
 
 	const dispatch = useAppDispatch();
 
@@ -43,7 +44,7 @@ export function BurgerOptionsList({ orderId }: { orderId: string }) {
 								}}
 							/>
 							<BurgerIngredientDetails
-								option={option}
+								info={option.info}
 								key={index}
 							/>
 						</li>

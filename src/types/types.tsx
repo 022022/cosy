@@ -49,11 +49,6 @@ export interface BurgerInfo {
 	about: string;
 }
 
-export interface BurgerIngredientDetailsProps {
-	option: BurgerOptions;
-}
-
-
 export interface BurgerIngredientImageProps {
 	height: number;
 	width: number;

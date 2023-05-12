@@ -113,13 +113,14 @@ export const { addToOrder, removeFromOrder, finalizeOrder, removeBurger, setQuan
 
 export const selectBurger = createSelector(
     [(state: RootState) => state.burgerConstructor],
-    (state) => {
-        return {
-            status: state.status,
-            burgerOrders: state.burgerOrders,
-            burger: [...state.burger].sort((a, b) => a.sortOrder - b.sortOrder),
-        }
-    }
+    (state) => [...state.burger].sort((a, b) => a.sortOrder - b.sortOrder)
 );
+
+export const selectBurgerOrders = (state:RootState) => state.burgerConstructor.burgerOrders;
+
+export const selectBurgerOrderById = (state: RootState, orderId: string) =>
+	new Set(state.burgerConstructor.burgerOrders.find((item) => item.orderId === orderId)?.ingredients);
+
+export const selectBurgerStatus = (state:RootState) => state.burgerConstructor.status;
 
 export default burgerSlice.reducer;

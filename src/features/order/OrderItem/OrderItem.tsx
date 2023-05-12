@@ -28,15 +28,6 @@ export function OrderItem({
         }
 	}
 
-    function removeBurgerFromOrder() {
-        dispatch(removeBurger({ orderId }));
-    }
-
-    function closeConfirmation() {
-        setShowConfirmation(false);
-    }
-
-
 	return (
 		<li className='order-list__item d-flex gap-5 flex-column flex-md-row align-items-center py-4 px-3 px-md-5'>
 			<Link to={`/burger/${orderId}`}>
@@ -67,11 +58,11 @@ export function OrderItem({
 						<Button
 							variant='secondary'
 							size='sm'
-							onClick={() => removeBurgerFromOrder()}
+							onClick={() => dispatch(removeBurger({ orderId }))}
 						>
 							Удалить
 						</Button>
-						<Button size='sm' onClick={() => closeConfirmation()}>
+						<Button size='sm' onClick={() => setShowConfirmation(false)}>
 							Оставить
 						</Button>
 					</div>

@@ -8,13 +8,13 @@ import { BurgerConstructor } from './features/burger/';
 
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from './app/hooks';
-import { getBurger, selectBurger } from './features/burger/burgerSlice';
+import { getBurger, selectBurgerStatus } from './features/burger/burgerSlice';
 import { Order } from './features/order';
 
 
 function App() {
     const dispatch = useAppDispatch();
-    const status = useAppSelector(selectBurger).status;
+    const status = useAppSelector(selectBurgerStatus);
 
 	useEffect(() => {
 		dispatch(getBurger());

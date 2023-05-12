@@ -1,14 +1,12 @@
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
 import { useAppSelector } from '../../app/hooks';
-import { selectBurger } from '../burger/burgerSlice';
+import { selectBurger, selectBurgerOrders } from '../burger/burgerSlice';
 import { OrderItem } from './OrderItem/OrderItem';
 
 export function Order() {
-    const burgerData = useAppSelector(selectBurger);
-	const burgerOptions = burgerData.burger;
-    const burgerOrders = burgerData.burgerOrders;
+    const burgerOptions = useAppSelector(selectBurger);
+    const burgerOrders = useAppSelector(selectBurgerOrders);
 
     let orderSum = 0
     const allOrders = [];

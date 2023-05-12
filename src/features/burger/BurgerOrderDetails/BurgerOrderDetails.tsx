@@ -1,15 +1,14 @@
 import Button from 'react-bootstrap/Button';
 import { useAppSelector } from '../../../app/hooks';
-import { finalizeOrder, selectBurger } from '../burgerSlice';
+import { finalizeOrder, selectBurger, selectBurgerOrderById, selectBurgerOrders } from '../burgerSlice';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 export function BurgerOrderDetails({ orderId }: { orderId: string }) {
-	const burgerData = useAppSelector(selectBurger);
-	const burgerOptions = burgerData.burger;
+	const burgerOptions = useAppSelector(selectBurger);
     const dispatch = useDispatch();
 
-    const added = new Set(burgerData.burgerOrders.find((item) => item.orderId === orderId)?.ingredients);
+    const added = useAppSelector((state) =>	selectBurgerOrderById(state, orderId));
 
 	let totalPrice = 0;
 

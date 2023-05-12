@@ -1,12 +1,10 @@
-import { BurgerIngredientDetailsProps } from '../../../types/types';
+import { BurgerInfo } from '../../../types/types';
 
-export function BurgerIngredientDetails({
-	option
-}: BurgerIngredientDetailsProps) {
+export function BurgerIngredientDetails({ info }: {info: BurgerInfo}) {
 	return (
 		<div className='burger__ingredient-details'>
-			<div>{option.info.weight} гр.</div>
-			<div>{option.info.cost} руб.</div>
+			<div>{info.weight} гр.</div>
+			<div>{info.cost} руб.</div>
 		</div>
 	);
 }
