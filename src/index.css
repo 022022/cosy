@@ -1,8 +1,40 @@
-@import url(./pages/Main/main.css);
+:root {
+  --primary-text: #fff;
+  --secondary-text: #c3c3c3;
+  --primary-bg: #292929;
+  --secondary-bg: #464646;
+}
 
-body {
-    background: url('./../public/images/aleisha-kalina.jpg');
+main {
+    padding-top: 55px;
+}
+
+.burger__load-error {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.logo {
+    background: url('./../public/images/logo123burger.svg');
+    height: 25px;
+    width: 160px;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 100vh;
+    background-position: center;
+    filter: brightness(75%);
 }
+
+.logo-big {
+    height: 36px;
+    width: 230px;
+}
+
+@import url(./features/burger/burgerConstructor.css);
+@import url(./features/order/order.css);
+@import url(./features/order/OrderItem/orderItem.css);
+@import url(./pages/Main/main.css);
+@import url(./components/BurgerImage/BurgerImage/burgerImage.css);

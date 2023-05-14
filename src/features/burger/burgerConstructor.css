@@ -1,0 +1,130 @@
+@import url(./BurgerOptionsList/burgerOptionsList.css);
+@import url(./BurgerIngredientDetails/burgerIngredientDetails.css);
+@import url(./BurgerOrderDetails/burgerOrderDetails.css);
+
+.burger__wrapper {
+	background-color: #292929;
+	color: #dddddd;
+	justify-content: center;
+}
+
+.burger__order {
+	width: 500px;
+	display: flex;
+	background-color: #464646;
+	position: fixed;
+    height: 100vh;
+    align-items: center;
+}
+
+.burger__options {
+    margin-left: 420px;
+}
+
+@media (max-width: 1400px) {
+	.burger__wrapper {
+		display: block;
+	}
+
+	.burger__order-details {
+		padding: 40px;
+	}
+
+	.burger__options {
+        margin-left: 420px;
+	}
+
+	.burger__order {
+		width: 310px;
+		position: fixed;
+        height: 100vh;
+        align-items: center;
+	}
+}
+
+
+@media (max-width: 992px) {
+	.burger__order {
+		width: 200px;
+		position: fixed;
+		display: flex;
+		height: 100vh;
+		background-color: #39373a;
+		flex-direction: column-reverse;
+		justify-content: center;
+	}
+
+	.burger__order-details-list {
+		display: none;
+	}
+
+	.burger__image {
+		padding: 20px;
+	}
+
+	.burger__order {
+		background-color: transparent;
+		width: 200px;
+	}
+
+	.burger__options {
+        margin-left: 310px;
+	}
+}
+
+@media (max-width: 767px) {
+    .burger__order {
+		width: 0;
+    }
+    .burger__order-details {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+        background-color: #39373af5;
+    }
+
+    .burger__groups {
+        margin-bottom: 180px;
+        padding: 0 40px;
+    }
+
+	.burger__visual {
+		display: none;
+	}
+
+	.burger__ingredient {
+        flex-wrap: wrap;
+	}
+
+	.burger__options {
+		margin-left: 0;
+	}
+}
+
+@media (max-width: 400px) {
+    .burger__order {
+		width: 0;
+    }
+	.burger__ingredient {
+        flex-wrap: wrap;
+	}
+
+	.burger__ingredient-details {
+		display: flex;
+	}
+
+    .burger__groups {
+        padding: 0 10px;
+    }
+
+    .burger__group-contents {
+        width: min-content;
+    }
+    .burger__options {
+		margin-left: 0;
+	}
+}

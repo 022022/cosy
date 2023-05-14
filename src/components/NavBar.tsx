@@ -2,28 +2,58 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router-dom';
+import { useAppSelector } from '../app/hooks';
+import { selectBurgerOrders } from '../features/burger/burgerSlice';
 
 export function NavBar() {
+    const orders = useAppSelector(selectBurgerOrders);
 	return (
-		<Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
+		<Navbar
+			expand='lg'
+			bg='black'
+			variant='dark'
+			fixed='top'
+			collapseOnSelect
+		>
 			<Container>
-				<NavLink to='/' end>
-					<Navbar.Brand>123Burger</Navbar.Brand>
-				</NavLink>
+				<Navbar.Brand>
+					<Nav.Link
+						to='/'
+						as={NavLink}
+						className='nav-link'
+						eventKey='0'
+						end
+					>
+						<div className='logo'></div>
+					</Nav.Link>
+				</Navbar.Brand>
+
 				<Navbar.Toggle aria-controls='responsive-navbar-nav' />
 				<Navbar.Collapse id='responsive-navbar-nav'>
 					<Nav className='me-auto'>
-						<Nav.Link href='#'>Бургер</Nav.Link>
-                        
-						<NavLink to='/additions' className='nav-link'>
-							К бургеру
-						</NavLink>
-
-						<Nav.Link href='#'>Доставка</Nav.Link>
+						<Nav.Link
+							to='/burger/new'
+							as={NavLink}
+							className='nav-link'
+							eventKey='1'
+						>
+							Новый бургер
+						</Nav.Link>
 					</Nav>
-					<Nav>
-						<Nav.Link href='#'>Мой заказ</Nav.Link>
-					</Nav>
+					{orders.length > 1 ? (
+						<Nav>
+							<Nav.Link
+								to='/order'
+								as={NavLink}
+								className='nav-link'
+								eventKey='4'
+							>
+								Мой заказ ({orders.length - 1})
+							</Nav.Link>
+						</Nav>
+					) : (
+						''
+					)}
 				</Navbar.Collapse>
 			</Container>
 		</Navbar>

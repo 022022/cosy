@@ -1,3 +1,8 @@
+import { useState } from 'react';
+
 export function Additions(){
-    return <></>;
+    const [burgerOptions, setBurgerOptions] = useState(0);
+    return (
+		<></>
+	);
 }

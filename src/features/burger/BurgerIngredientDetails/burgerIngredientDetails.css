@@ -1,0 +1,34 @@
+.burger__ingredient-details {
+    line-height: 1.5;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    justify-items: end;
+    color: var(--secondary-text);
+}
+
+.burger__ingredient {
+    display: flex;
+}
+
+.burger__ingredient .form-check {
+    width: 160px;
+}
+
+.burger__ingredient .form-check label {
+    font-weight: bold;
+}
+
+.burger__ingredient-label {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    border-bottom: 1px dashed #7e7e7e;
+    padding-bottom: 3px;
+}
+
+.burger__group-contents {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

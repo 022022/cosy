@@ -1,17 +1,15 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
-import { fetchBurgerData } from '../../services/sanity/burger';
-
+import { Link } from 'react-router-dom';
 
 
 export function Main(){
-    // test - fetchBurgerData();
-
     return (
 		<>
 			<Container>
 				<div className='main'>
+					<h1>Создай свой авторский бургер!</h1>
 					<div className='roadmap'>
 						<Card bg='dark' text='light'>
 							<Card.Body>
@@ -24,7 +22,7 @@ export function Main(){
 						<Card bg='dark' text='light'>
 							<Card.Body>
 								<Card.Title>Добавь, что хочешь</Card.Title>
-								<Card.Text>Картошка, салаты, напитки</Card.Text>
+								<Card.Text >Котлета, сыр, овощи, соусы</Card.Text>
 							</Card.Body>
 						</Card>
 						<Card bg='dark' text='light'>
@@ -34,10 +32,15 @@ export function Main(){
 							</Card.Body>
 						</Card>
 					</div>
-
-					<Button size='lg'>Хочу бургер!</Button>
+					<Link to='/burger/new'>
+						<Button size='lg' className='btn btn-primary'>
+							Хочу бургер!
+						</Button>
+					</Link>
 				</div>
 			</Container>
+
+			<div className='bg'></div>
 		</>
 	);
 }
