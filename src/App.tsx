@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './scss/style.css';
 import { Route, Routes } from 'react-router';
 import Layout from './layouts/Layout';
-import { Additions } from './pages/Additions/Additions';
 import { BurgerConstructor } from './features/burger/';
 
 import { useEffect } from 'react';
@@ -37,7 +36,6 @@ function App() {
 					<Route path='/' element={<Layout />}>
 						<Route index element={<Main />} />
 						<Route path='/burger/:id' element={<BurgerConstructor />} />
-						<Route path='/additions' element={<Additions />} />
 						<Route path='/order' element={<Order />} />
 						<Route path='*' element={<Main />} />
 					</Route>

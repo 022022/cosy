@@ -1,6 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import { useAppSelector } from '../../../app/hooks';
-import { finalizeOrder, selectBurger, selectBurgerOrderById, selectBurgerOrders } from '../burgerSlice';
+import { finalizeOrder, selectBurger, selectBurgerOrderById } from '../burgerSlice';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 

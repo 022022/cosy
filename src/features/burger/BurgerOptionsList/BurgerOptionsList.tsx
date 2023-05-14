@@ -1,7 +1,7 @@
 import { BurgerIngredientDetails } from '../BurgerIngredientDetails/BurgerIngredientDetails';
 import Form from 'react-bootstrap/Form';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { addToOrder, removeFromOrder, selectBurger, selectBurgerOrderById, selectBurgerOrders } from '../burgerSlice';
+import { addToOrder, removeFromOrder, selectBurger, selectBurgerOrderById } from '../burgerSlice';
 
 export function BurgerOptionsList({ orderId }: { orderId: string }) {
 	const burgerOptions = useAppSelector(selectBurger);

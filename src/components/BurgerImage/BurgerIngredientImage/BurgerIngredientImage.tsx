@@ -12,7 +12,10 @@ export function BurgerIngredientImage({
 
         const PROJECT_ID = process.env.REACT_APP_API_PROJECT_ID;
 
-        const [srcType, srcId, srcSize, srcExtension] = src.split('-');
+        const srcParts = src.split('-');
+
+        const srcId = srcParts[1];
+        const srcSize = srcParts[2];
 
         const variants = {
             initial: { opacity: 0 },
