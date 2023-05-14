@@ -9,7 +9,6 @@
     width: 220px;
 }
 
-
 .main {
     min-height: calc(100vh - 55px);
     display: flex;
@@ -21,7 +20,6 @@
     gap: 40px;
 }
 
-
 .bg {
     position: fixed;
     top: 0;
@@ -31,23 +29,14 @@
     z-index: 0;
     filter: brightness(75%);
     background-position: center;
-    background: url('./../../../public/images/aleisha-kalina.jpg');
+    background: url('./../../../public/images/mainbg.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 767px) {
     .bg {
-        background:  url('./../../../public/images/aleisha-kalina-1000.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-}
-
-@media (max-width: 500px) {
-    .bg {
-        background: url('./../../../public/images/aleisha-kalina-500.jpg');
+        background:  url('./../../../public/images/mainbg-767.jpg');
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;

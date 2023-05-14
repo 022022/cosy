@@ -8,13 +8,13 @@ import { BurgerConstructor } from './features/burger/';
 
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from './app/hooks';
-import { getBurger, selectBurgerStatus } from './features/burger/burgerSlice';
+import { getBurger, selectBurger, selectBurgerStatus } from './features/burger/burgerSlice';
 import { Order } from './features/order';
-
 
 function App() {
     const dispatch = useAppDispatch();
     const status = useAppSelector(selectBurgerStatus);
+    const burgerData = useAppSelector(selectBurger);
 
 	useEffect(() => {
 		dispatch(getBurger());
@@ -23,11 +23,10 @@ function App() {
 
 	return (
 		<>
-			{status === 'failed' ? (
+			{status === 'failed' || burgerData.length === 0 ? (
 				<div className='burger__load-error'>
-					<p className='text-muted lead'>
-						:(
-					</p>
+					<div className='logo logo-big'></div>
+					<p className='text-muted fs-1'>:(</p>
 					<p className='w-50'>
 						У нас на сайте временные неполадки, зайдите, пожалуйста,
 						попозже

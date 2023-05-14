@@ -16,15 +16,18 @@ export function NavBar() {
 			collapseOnSelect
 		>
 			<Container>
-				<Nav.Link
-					to='/'
-					as={NavLink}
-					className='nav-link'
-					eventKey='0'
-					end
-				>
-					<Navbar.Brand>123Burger</Navbar.Brand>
-				</Nav.Link>
+				<Navbar.Brand>
+					<Nav.Link
+						to='/'
+						as={NavLink}
+						className='nav-link'
+						eventKey='0'
+						end
+					>
+						<div className='logo'></div>
+					</Nav.Link>
+				</Navbar.Brand>
+
 				<Navbar.Toggle aria-controls='responsive-navbar-nav' />
 				<Navbar.Collapse id='responsive-navbar-nav'>
 					<Nav className='me-auto'>
@@ -34,25 +37,7 @@ export function NavBar() {
 							className='nav-link'
 							eventKey='1'
 						>
-							Бургер
-						</Nav.Link>
-
-						<Nav.Link
-							to='/additions'
-							as={NavLink}
-							className='nav-link'
-							eventKey='2'
-						>
-							К бургеру
-						</Nav.Link>
-
-						<Nav.Link
-							to='/'
-							as={NavLink}
-							className='nav-link'
-							eventKey='3'
-						>
-							Доставка
+							Новый бургер
 						</Nav.Link>
 					</Nav>
 					{orders.length > 1 ? (

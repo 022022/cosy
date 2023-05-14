@@ -22,7 +22,7 @@ export function Main(){
 						<Card bg='dark' text='light'>
 							<Card.Body>
 								<Card.Title>Добавь, что хочешь</Card.Title>
-								<Card.Text>Картошка, салаты, напитки</Card.Text>
+								<Card.Text >Котлета, сыр, овощи, соусы</Card.Text>
 							</Card.Body>
 						</Card>
 						<Card bg='dark' text='light'>

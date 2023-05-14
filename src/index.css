@@ -7,7 +7,6 @@
 
 main {
     padding-top: 55px;
-    background-color: var(--primary-bg);
 }
 
 .burger__load-error {
@@ -17,6 +16,21 @@ main {
     align-items: center;
     justify-content: center;
     text-align: center;
+}
+
+.logo {
+    background: url('./../public/images/logo123burger.svg');
+    height: 25px;
+    width: 160px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: brightness(75%);
+}
+
+.logo-big {
+    height: 36px;
+    width: 230px;
 }
 
 @import url(./features/burger/burgerConstructor.css);
