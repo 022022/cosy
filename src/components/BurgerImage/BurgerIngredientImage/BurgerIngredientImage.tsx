@@ -1,3 +1,4 @@
+import { PROJECT_ID } from '../../../services/sanity/burger';
 import { BurgerIngredientImageProps } from '../../../types/types';
 import { motion } from 'framer-motion';
 
@@ -9,9 +10,6 @@ export function BurgerIngredientImage({
         top,
         src
     }: BurgerIngredientImageProps) {
-
-        const PROJECT_ID = process.env.REACT_APP_API_PROJECT_ID;
-
         const srcParts = src.split('-');
 
         const srcId = srcParts[1];
