@@ -1,7 +1,7 @@
 import {createClient} from '@sanity/client'
 
-const PROJECT_ID = 'er1cil54';
-const DATASET = 'production';
+export const PROJECT_ID = 'er1cil54';
+export const DATASET = 'production';
 
 export async function fetchBurger() {
     const client = createClient({
