@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import { useAppSelector } from '../../app/hooks';
 import { selectBurger, selectBurgerOrders } from '../burger/burgerSlice';
 import { OrderItem } from './OrderItem/OrderItem';
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export function Order() {
     const burgerOptions = useAppSelector(selectBurger);
