@@ -1,10 +1,15 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 export function Main(){
+    const navigate = useNavigate();
+    function navigateToBurger() {
+        navigate('/burger/new', { replace: true });
+    }
+
     return (
 		<>
 			<Container>
@@ -32,11 +37,9 @@ export function Main(){
 							</Card.Body>
 						</Card>
 					</div>
-					<Link to='/burger/new'>
-						<Button size='lg' className='btn btn-primary'>
-							Хочу бургер!
-						</Button>
-					</Link>
+					<Button size='lg' className='btn btn-primary' onClick={navigateToBurger}>
+						Хочу бургер!
+					</Button>
 				</div>
 			</Container>
 

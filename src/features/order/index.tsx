@@ -3,11 +3,13 @@ import Button from 'react-bootstrap/Button';
 import { useAppSelector } from '../../app/hooks';
 import { selectBurger, selectBurgerOrders } from '../burger/burgerSlice';
 import { OrderItem } from './OrderItem/OrderItem';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export function Order() {
     const burgerOptions = useAppSelector(selectBurger);
     const burgerOrders = useAppSelector(selectBurgerOrders);
+    const navigate = useNavigate();
+
     let orderSum = 0;
     const allOrders = [];
 
@@ -53,19 +55,26 @@ export function Order() {
 			);
 	}
 
+	function navigateToBurger() {
+		navigate('/burger/new', { replace: true });
+	}
+
 	return (
 		<div className='main'>
 			<Container className='d-flex flex-column gap-3 align-items-center py-4'>
+                <h1>Заказ</h1>
 				{burgerOrders.length <= 1 ? (
 					<>
 						<p className='lead text-light'>
 							Создай свой авторский бургер!
 						</p>
-						<Link to='/burger/new'>
-							<Button size='lg' className='btn btn-primary'>
-								Хочу бургер!
-							</Button>
-						</Link>
+						<Button
+							size='lg'
+							className='btn btn-primary'
+							onClick={navigateToBurger}
+						>
+							Хочу бургер!
+						</Button>
 					</>
 				) : (
 					<>

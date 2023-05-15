@@ -2,6 +2,7 @@ import { BurgerIngredientDetails } from '../BurgerIngredientDetails/BurgerIngred
 import Form from 'react-bootstrap/Form';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { addToOrder, removeFromOrder, selectBurger, selectBurgerOrderById } from '../burgerSlice';
+import { BurgerGroup } from '../../../types/types';
 
 export function BurgerOptionsList({ orderId }: { orderId: string }) {
 	const burgerOptions = useAppSelector(selectBurger);
@@ -12,11 +13,47 @@ export function BurgerOptionsList({ orderId }: { orderId: string }) {
 
 	const dispatch = useAppDispatch();
 
+    function handleOnChange(optionId: string, group: BurgerGroup) {
+		if (group.type === 'radio') {
+			for (const opt of group.options) {
+				dispatch(
+					removeFromOrder({
+						orderId,
+						ingredients: [opt.id],
+					})
+				);
+			}
+			dispatch(
+				addToOrder({
+					orderId,
+					ingredients: [optionId],
+				})
+			);
+		} else {
+			if (added.has(optionId)) {
+				dispatch(
+					removeFromOrder({
+						orderId,
+						ingredients: [optionId],
+					})
+				);
+			} else {
+				dispatch(
+					addToOrder({
+						orderId,
+						ingredients: [optionId],
+					})
+				);
+			}
+		}
+	}
+
+
+
 	const groups = burgerOptions.map((group) => (
-		<li key={`group-${group.categoryId}`} className='burger__group'>
+		<Form.Group key={`group-${group.categoryId}`} className='burger__group'>
 			<h2> {group.category} </h2>
-			<ul className=''>
-				<Form className='burger__group-contents'>
+			<ul className='burger__group-contents'>
 					{group.options.map((option, index) => (
 						<li
 							className='burger__ingredient'
@@ -29,40 +66,7 @@ export function BurgerOptionsList({ orderId }: { orderId: string }) {
 								name={group.categoryId}
 								id={option.id}
 								checked={added.has(option.id)}
-								onChange={() => {
-									if (group.type === 'radio') {
-										for (const opt of group.options) {
-											dispatch(
-												removeFromOrder({
-													orderId,
-													ingredients: [opt.id],
-												})
-											);
-										}
-										dispatch(
-											addToOrder({
-												orderId,
-												ingredients: [option.id],
-											})
-										);
-									} else {
-										if (added.has(option.id)) {
-											dispatch(
-												removeFromOrder({
-													orderId,
-													ingredients: [option.id],
-												})
-											);
-										} else {
-											dispatch(
-												addToOrder({
-													orderId,
-													ingredients: [option.id],
-												})
-											);
-										}
-									}
-								}}
+								onChange={() => handleOnChange(option.id, group)}
 							/>
 							<BurgerIngredientDetails
 								info={option.info}
@@ -70,16 +74,15 @@ export function BurgerOptionsList({ orderId }: { orderId: string }) {
 							/>
 						</li>
 					))}
-				</Form>
 			</ul>
-		</li>
+		</Form.Group>
 	));
 
 	return (
 		<div className='burger__options'>
 			<div className='burger__options-wrapper'>
 				<h1>Собери свой бургер</h1>
-				<ul className='burger__groups'>{groups}</ul>
+				<Form className='burger__groups'>{groups}</Form>
 			</div>
 		</div>
 	);
