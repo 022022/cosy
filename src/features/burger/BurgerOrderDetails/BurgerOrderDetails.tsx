@@ -1,14 +1,16 @@
 import Button from 'react-bootstrap/Button';
 import { useAppSelector } from '../../../app/hooks';
 import { finalizeOrder, selectBurger, selectBurgerOrderById } from '../burgerSlice';
-import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 
 export function BurgerOrderDetails({ orderId }: { orderId: string }) {
 	const burgerOptions = useAppSelector(selectBurger);
     const dispatch = useDispatch();
 
     const added = useAppSelector((state) =>	selectBurgerOrderById(state, orderId));
+
+    const navigate = useNavigate();
 
 	let totalPrice = 0;
 
@@ -51,6 +53,16 @@ export function BurgerOrderDetails({ orderId }: { orderId: string }) {
 		);
 	}
 
+	function order() {
+		dispatch(
+			finalizeOrder({
+				orderId,
+				ingredients: Array.from(added),
+			})
+		);
+		navigate('/order', { replace: true });
+	}
+
 	return (
 		<div className='burger__order-details'>
 			<ul className='burger__order-details-list'>
@@ -60,22 +72,9 @@ export function BurgerOrderDetails({ orderId }: { orderId: string }) {
 				<div className='burger__key'>Всего</div>
 				<div className='burger__value'>{totalPrice} руб.</div>
 			</div>
-			<Link to='/order'>
-				<Button
-					size='lg'
-					className='w-100'
-					onClick={() =>
-						dispatch(
-							finalizeOrder({
-								orderId,
-								ingredients: Array.from(added),
-							})
-						)
-					}
-				>
-					Хочу!
-				</Button>
-			</Link>
+			<Button size='lg' onClick={order}>
+				Хочу!
+			</Button>
 		</div>
 	);
 }

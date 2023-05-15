@@ -7,6 +7,14 @@ import { selectBurgerOrders } from '../features/burger/burgerSlice';
 
 export function NavBar() {
     const orders = useAppSelector(selectBurgerOrders);
+    let orderQuantity = 0;
+
+    for(const item of orders){
+        if(item.orderId !== 'new'){
+            orderQuantity += item.quantity;
+        }
+    }
+
 	return (
 		<Navbar
 			expand='lg'
@@ -22,9 +30,18 @@ export function NavBar() {
 						as={NavLink}
 						className='nav-link'
 						eventKey='0'
+						title='Сайт бургерной Раз-два-три бургер'
 						end
 					>
-						<div className='logo'></div>
+						<img
+							alt='Логотип бургерной Раз-два-три бургер'
+							src='images/logo123burger.svg'
+							style={{
+								height: 25,
+								width: 160,
+								filter: 'brightness(75%)',
+							}}
+						/>
 					</Nav.Link>
 				</Navbar.Brand>
 
@@ -48,7 +65,7 @@ export function NavBar() {
 								className='nav-link'
 								eventKey='4'
 							>
-								Мой заказ ({orders.length - 1})
+								Мой заказ ({orderQuantity})
 							</Nav.Link>
 						</Nav>
 					) : (

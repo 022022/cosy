@@ -30,7 +30,7 @@ export function OrderItem({
 
 	return (
 		<li className='order-list__item d-flex gap-5 flex-column flex-md-row align-items-center py-4 px-3 px-md-5'>
-			<Link to={`/burger/${orderId}`}>
+			<Link to={`/burger/${orderId}`} title='Поменять ингредиенты'>
 				<BurgerImage
 					containerMaxHeight={150}
 					containerMaxWidth={90}

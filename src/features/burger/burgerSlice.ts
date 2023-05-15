@@ -9,7 +9,7 @@ export interface BurgerState {
 	status: 'idle' | 'loading' | 'failed';
 }
 
-interface BurgerOrder {
+export interface BurgerOrder {
 	orderId: string;
 	quantity: number;
 	ingredients: string[];
