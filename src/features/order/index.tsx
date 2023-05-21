@@ -14,7 +14,6 @@ export function Order() {
     const allOrders = [];
 
     for(const order of burgerOrders) {
-            if(order.orderId === 'new') continue;
             let totalPrice = 0;
             let ingredients = [];
 			for (const group of burgerOptions) {
@@ -62,21 +61,8 @@ export function Order() {
 	return (
 		<div className='main'>
 			<Container className='d-flex flex-column gap-3 align-items-center py-4'>
-                <h1>Заказ</h1>
-				{burgerOrders.length <= 1 ? (
-					<>
-						<p className='lead text-light'>
-							Создай свой авторский бургер!
-						</p>
-						<Button
-							size='lg'
-							className='btn btn-primary'
-							onClick={navigateToBurger}
-						>
-							Хочу бургер!
-						</Button>
-					</>
-				) : (
+				<h1>Заказ</h1>
+				{burgerOrders.length > 0 ? (
 					<>
 						<ul className='order-list'>{allOrders}</ul>
 
@@ -88,6 +74,20 @@ export function Order() {
 								Заказать
 							</Button>
 						</div>
+					</>
+				) : (
+					<>
+						<p className='lead text-light'>Здесь пока пусто.</p>
+						<p className='lead text-light'>
+							Создай свой авторский бургер!
+						</p>
+						<Button
+							size='lg'
+							className='btn btn-primary'
+							onClick={navigateToBurger}
+						>
+							Хочу бургер!
+						</Button>
 					</>
 				)}
 			</Container>

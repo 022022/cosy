@@ -7,13 +7,7 @@ import { selectBurgerOrders } from '../features/burger/burgerSlice';
 
 export function NavBar() {
     const orders = useAppSelector(selectBurgerOrders);
-    let orderQuantity = 0;
-
-    for(const item of orders){
-        if(item.orderId !== 'new'){
-            orderQuantity += item.quantity;
-        }
-    }
+    let orderQuantity = orders.reduce((sum, item) => sum + item.quantity, 0);
 
 	return (
 		<Navbar
@@ -57,7 +51,7 @@ export function NavBar() {
 							Новый бургер
 						</Nav.Link>
 					</Nav>
-					{orders.length > 1 ? (
+					{orderQuantity > 0 ? (
 						<Nav>
 							<Nav.Link
 								to='/order'

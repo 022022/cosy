@@ -1,6 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import { useAppSelector } from '../../../app/hooks';
-import { finalizeOrder, selectBurger, selectBurgerOrderById } from '../burgerSlice';
+import { finalizeOrder, selectBurger, selectBurgerOrderById, selectSuggestedOrder } from '../burgerSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 
@@ -8,7 +8,13 @@ export function BurgerOrderDetails({ orderId }: { orderId: string }) {
 	const burgerOptions = useAppSelector(selectBurger);
     const dispatch = useDispatch();
 
-    const added = useAppSelector((state) =>	selectBurgerOrderById(state, orderId));
+    const added = useAppSelector((state) => {
+		if (orderId === 'new') {
+			return selectSuggestedOrder(state);
+		} else {
+			return selectBurgerOrderById(state, orderId);
+		}
+	});
 
     const navigate = useNavigate();
 

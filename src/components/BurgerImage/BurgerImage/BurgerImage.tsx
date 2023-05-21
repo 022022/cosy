@@ -2,13 +2,21 @@ import { AnimatePresence } from 'framer-motion';
 import { BurgerImageProps, ItemsVisible } from '../../../types/types';
 import { BurgerIngredientImage } from './../BurgerIngredientImage/BurgerIngredientImage';
 import { useAppSelector } from '../../../app/hooks';
-import { selectBurger, selectBurgerOrderById } from '../../../features/burger/burgerSlice';
+import { selectBurger, selectBurgerOrderById, selectSuggestedOrder } from '../../../features/burger/burgerSlice';
 
 export function BurgerImage({ containerMaxHeight, containerMaxWidth, orderId }: BurgerImageProps) {
     const presetFirstElementWidth = containerMaxWidth;
     const containerHeight = containerMaxHeight;
     const burgerOptions = useAppSelector(selectBurger);
-    const added = useAppSelector((state) =>	selectBurgerOrderById(state, orderId));
+
+    const added = useAppSelector((state) => {
+            if(orderId === 'new') {
+                return selectSuggestedOrder(state);
+            } else {
+                return selectBurgerOrderById(state, orderId);
+            }
+        }
+    );
 
     const images = [];
     let containerWidth = 0;
