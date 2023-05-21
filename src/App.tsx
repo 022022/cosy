@@ -1,6 +1,6 @@
-import { Main } from './pages/Main/Main';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './scss/style.css';
+import { Main } from './pages/Main/Main';
 import { Route, Routes } from 'react-router';
 import Layout from './layouts/Layout';
 import { BurgerConstructor } from './features/burger/';
@@ -19,25 +19,23 @@ function App() {
 		dispatch(getBurger());
 	}, [dispatch]);
 
-	return (
-		<>
-			{status === 'failed' || burgerData.length === 0 ? (
-                <Error />
-			) : (
-				<Routes>
-					<Route path='/' element={<Layout />}>
-						<Route index element={<Main />} />
-						<Route
-							path='/burger/:id'
-							element={<BurgerConstructor />}
-						/>
-						<Route path='/order' element={<Order />} />
-						<Route path='*' element={<Main />} />
-					</Route>
-				</Routes>
-			)}
-		</>
-	);
+    if (status === 'idle' || status === 'loading') {
+		return <p className = 'text-center pt-3'>Идет загрузка...</p>;
+	} else if (status === 'failed' || burgerData.length === 0) {
+		return <Error />;
+	} else {
+		return (
+			<Routes>
+				<Route path='/' element={<Layout />}>
+					<Route index element={<Main />} />
+					<Route path='/burger/:id' element={<BurgerConstructor />} />
+					<Route path='/order' element={<Order />} />
+					<Route path='*' element={<Main />} />
+				</Route>
+			</Routes>
+		);
+	}
 }
+
 
 export default App;

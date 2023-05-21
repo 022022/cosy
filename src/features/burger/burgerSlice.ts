@@ -6,7 +6,8 @@ import { BurgerGroup } from '../../types/types';
 export interface BurgerState {
 	burger: BurgerGroup[] | [];
 	burgerOrders: BurgerOrder[];
-	status: 'idle' | 'loading' | 'failed';
+    suggestedOrder: BurgerOrder;
+	status: 'idle' | 'loading' | 'failed' | 'success';
 }
 
 export interface BurgerOrder {
@@ -18,6 +19,11 @@ export interface BurgerOrder {
 const initialState:BurgerState = {
     burger: [],
     burgerOrders: [],
+    suggestedOrder: {
+        orderId: 'new',
+        quantity: 1,
+        ingredients: [],
+    },
     status: 'idle',
 }
 
@@ -34,15 +40,15 @@ export const burgerSlice = createSlice({
 	initialState,
 	reducers: {
 		finalizeOrder: (state,action: PayloadAction<{ orderId: string; ingredients: string[] }>	) => {
-			if (action.payload.orderId !== 'new') {
-				const currentOrder = state.burgerOrders.find((item) => item.orderId === action.payload.orderId);
-				if (currentOrder) currentOrder.ingredients = action.payload.ingredients;
-			} else {
+			if (action.payload.orderId === 'new') {
 				state.burgerOrders.push({
 					orderId: nanoid(),
 					ingredients: action.payload.ingredients,
 					quantity: 1,
 				});
+			} else {
+                const currentOrder = state.burgerOrders.find((item) => item.orderId === action.payload.orderId);
+				if (currentOrder) currentOrder.ingredients = action.payload.ingredients;
 			}
 		},
         removeBurger: (state, action: PayloadAction<{ orderId: string }>) => {
@@ -58,23 +64,35 @@ export const burgerSlice = createSlice({
 			state,
 			action: PayloadAction<{ orderId: string; ingredients: string[] }>
 		) => {
-			const currentOrder = state.burgerOrders.find(
-				(item) => item.orderId === action.payload.orderId
-			);
-			if (currentOrder)
-				currentOrder.ingredients.push(...action.payload.ingredients);
+            if (action.payload.orderId === 'new') {
+                state.suggestedOrder.ingredients.push(...action.payload.ingredients);
+            } else {
+                const currentOrder = state.burgerOrders.find(
+                    (item) => item.orderId === action.payload.orderId
+                );
+                if (currentOrder)
+                    currentOrder.ingredients.push(...action.payload.ingredients);
+            }
 		},
 		removeFromOrder: (
 			state,
 			action: PayloadAction<{ orderId: string; ingredients: string[] }>
 		) => {
-			const currentOrder = state.burgerOrders.find(
-				(item) => item.orderId === action.payload.orderId
-			);
-			if (currentOrder)
-				currentOrder.ingredients = currentOrder.ingredients.filter(
-					(item) => !action.payload.ingredients.includes(item)
-				);
+            if (action.payload.orderId === 'new') {
+                state.suggestedOrder.ingredients =
+					state.suggestedOrder.ingredients.filter(
+						(item) => !action.payload.ingredients.includes(item)
+					);
+            } else {
+                const currentOrder = state.burgerOrders.find(
+                    (item) => item.orderId === action.payload.orderId
+                );
+                if (currentOrder) {
+                    currentOrder.ingredients = currentOrder.ingredients.filter(
+                        (item) => !action.payload.ingredients.includes(item)
+                    );
+                }
+            }
 		},
 	},
 	extraReducers: (builder) => {
@@ -85,7 +103,7 @@ export const burgerSlice = createSlice({
 			.addCase(
 				getBurger.fulfilled,
 				(state, action: PayloadAction<BurgerGroup[]>) => {
-					state.status = 'idle';
+					state.status = 'success';
 					state.burger = action.payload;
 
                     if(state.burgerOrders.length === 0) {
@@ -96,11 +114,11 @@ export const burgerSlice = createSlice({
                             }
                         }
 
-                        state.burgerOrders.push({
+                        state.suggestedOrder = {
                             orderId: 'new',
                             quantity: 1,
                             ingredients: defaultIngredients,
-                        });
+                        };
                     }
 				}
 			)
@@ -114,9 +132,12 @@ export const { addToOrder, removeFromOrder, finalizeOrder, removeBurger, setQuan
 	burgerSlice.actions;
 
 export const selectBurger = createSelector(
-    [(state: RootState) => state.burgerConstructor],
-    (state) => [...state.burger].sort((a, b) => a.sortOrder - b.sortOrder)
+    [(state: RootState) => state.burgerConstructor.burger],
+    (state) => [...state].sort((a, b) => a.sortOrder - b.sortOrder)
 );
+
+export const selectSuggestedOrder = (state: RootState) =>
+	new Set(state.burgerConstructor.suggestedOrder.ingredients);
 
 export const selectBurgerOrders = (state:RootState) => state.burgerConstructor.burgerOrders;
 
