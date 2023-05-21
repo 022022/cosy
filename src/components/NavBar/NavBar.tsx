@@ -2,13 +2,9 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router-dom';
-import { useAppSelector } from '../app/hooks';
-import { selectBurgerOrders } from '../features/burger/burgerSlice';
+import { OrderCounter } from './OrderCounter';
 
 export function NavBar() {
-    const orders = useAppSelector(selectBurgerOrders);
-    let orderQuantity = orders.reduce((sum, item) => sum + item.quantity, 0);
-
 	return (
 		<Navbar
 			expand='lg'
@@ -51,20 +47,7 @@ export function NavBar() {
 							Новый бургер
 						</Nav.Link>
 					</Nav>
-					{orderQuantity > 0 ? (
-						<Nav>
-							<Nav.Link
-								to='/order'
-								as={NavLink}
-								className='nav-link'
-								eventKey='4'
-							>
-								Мой заказ ({orderQuantity})
-							</Nav.Link>
-						</Nav>
-					) : (
-						''
-					)}
+                    <OrderCounter />
 				</Navbar.Collapse>
 			</Container>
 		</Navbar>
