@@ -1,5 +1,5 @@
-export function Error() {
-    return (
+export function OrderSent() {
+	return (
 		<div className='info-page'>
 			<img
 				alt='Логотип бургерной Раз-два-три бургер'
@@ -11,10 +11,9 @@ export function Error() {
 				}}
 			/>
 
-			<p className='text-muted fs-1'>:(</p>
-			<p className='w-50'>
-				У нас на сайте временные неполадки, зайдите, пожалуйста, попозже
-			</p>
+			<p className='fs-1 mt-4'>Спасибо!</p>
+			<p className='w-50'>Мы уже готовим Ваш заказ</p>
+			<p className='w-50'>Ожидайте звонка </p>
 		</div>
 	);
 }

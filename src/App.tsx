@@ -9,6 +9,9 @@ import { useAppDispatch, useAppSelector } from './app/hooks';
 import { getBurger, selectBurger, selectBurgerStatus } from './features/burger/burgerSlice';
 import { Order } from './features/order';
 import { Error } from './pages/Error/Error';
+import { Delivery } from './pages/Delivery';
+import { ConfirmOrder } from './pages/ConfirmOrder';
+import { OrderSent } from './pages/OrderSent';
 
 function App() {
     const dispatch = useAppDispatch();
@@ -30,6 +33,9 @@ function App() {
 					<Route index element={<Main />} />
 					<Route path='/burger/:id' element={<BurgerConstructor />} />
 					<Route path='/order' element={<Order />} />
+					<Route path='/delivery' element={<Delivery />} />
+					<Route path='/confirm' element={<ConfirmOrder />} />
+					<Route path='/order-sent' element={<OrderSent />} />
 					<Route path='*' element={<Main />} />
 				</Route>
 			</Routes>

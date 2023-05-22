@@ -58,6 +58,10 @@ export function Order() {
 		navigate('/burger/new', { replace: true });
 	}
 
+    function navigateToDelivery() {
+        navigate('/delivery', { replace: true });
+    }
+
 	return (
 		<div className='main'>
 			<Container className='d-flex flex-column gap-3 align-items-center py-4'>
@@ -70,7 +74,7 @@ export function Order() {
 							<p className='order-list__sum lead'>
 								Сумма: {orderSum} руб.
 							</p>
-							<Button variant='primary' size='lg'>
+							<Button variant='primary' size='lg' onClick={navigateToDelivery}>
 								Заказать
 							</Button>
 						</div>

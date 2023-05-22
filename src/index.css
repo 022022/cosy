@@ -9,7 +9,7 @@ main {
     padding-top: 55px;
 }
 
-.burger__load-error {
+.info-page {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
