@@ -1,4 +1,4 @@
-import { PROJECT_ID } from '../../../services/sanity/burger';
+import { PROJECT_ID } from '../../../services/sanity/publicData';
 import { BurgerIngredientImageProps } from '../../../types/types';
 import { motion } from 'framer-motion';
 

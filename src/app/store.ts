@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import burgerReducer from '../features/burger/burgerSlice';
+import totalOrderReducer from '../features/order/totalOrderSlice';
 
 export const store = configureStore({
 	reducer: {
 		burgerConstructor: burgerReducer,
+		totalOrder: totalOrderReducer,
 	},
 });
 
