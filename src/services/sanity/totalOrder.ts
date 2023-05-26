@@ -1,18 +1,19 @@
-import { nanoid } from '@reduxjs/toolkit';
 import { TotalOrder } from '../../features/order/totalOrderSlice';
 import { PROJECT_ID } from './publicData';
 import { DATASET } from './publicData';
 
 export async function sendOrder(totalOrder: TotalOrder) {
     const tokenWithWriteAccess = process.env.REACT_APP_TOKEN;
+
+    const date = new Date();
+    const orderDate = date.toISOString();
+
 	const mutations = [
 		{
 			create: {
 				_type: 'orders',
-				totalOrderId: nanoid(),
-				address: totalOrder.address,
-				phone: totalOrder.phone,
-				orderContents: totalOrder.orderContents,
+                orderDate,
+                ...totalOrder
 			},
 		},
 	];
@@ -27,6 +28,4 @@ export async function sendOrder(totalOrder: TotalOrder) {
 			body: JSON.stringify({ mutations }),
 		}
 	)
-		//.then((response) => response.json())
-		//.catch((error) => console.error(error));
 }

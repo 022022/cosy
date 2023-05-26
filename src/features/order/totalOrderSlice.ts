@@ -1,7 +1,6 @@
 import {
 	createAsyncThunk,
 	createSlice,
-	nanoid,
 	PayloadAction,
 } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
@@ -14,7 +13,7 @@ export interface TotalOrderState {
 }
 
 export interface TotalOrder {
-    totalOrderId: string;
+	totalOrderId: string;
 	phone: string;
 	address: string;
 	orderContents: OrderContentsItem[]; // temp
@@ -59,6 +58,7 @@ export const totalOrderSlice = createSlice({
 		finalizeTotalOrder: (
 			state,
 			action: PayloadAction<{
+                totalOrderId: string,
 				burgerOrders: BurgerOrder[];
 				phone: string;
 				address: string;
@@ -67,6 +67,7 @@ export const totalOrderSlice = createSlice({
 			const orderContents = action.payload.burgerOrders.map((burger) => {
 				return {
 					id: burger.orderId,
+					_key: burger.orderId,
 					type: 'burger',
 					quantity: burger.quantity,
 					ingredients: burger.ingredients,
@@ -74,7 +75,7 @@ export const totalOrderSlice = createSlice({
 			});
 
 			const order = {
-                totalOrderId: nanoid(),
+                totalOrderId: action.payload.totalOrderId,
 				phone: action.payload.phone,
 				address: action.payload.address,
 				orderContents,

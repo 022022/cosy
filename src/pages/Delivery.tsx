@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { finalizeTotalOrder } from '../features/order/totalOrderSlice';
 import { selectBurgerOrders } from '../features/burger/burgerSlice';
+import { nanoid } from '@reduxjs/toolkit';
 
 export function Delivery() {
     const navigate = useNavigate();
@@ -26,6 +27,7 @@ export function Delivery() {
 
 			dispatch(
 				finalizeTotalOrder({
+					totalOrderId: nanoid(),
 					burgerOrders,
 					phone: formData.get('phone')?.toString() || '',
 					address: formData.get('address')?.toString() || '',
