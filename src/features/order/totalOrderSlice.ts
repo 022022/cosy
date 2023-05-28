@@ -69,6 +69,7 @@ export const totalOrderSlice = createSlice({
 					id: burger.orderId,
 					_key: burger.orderId,
 					type: 'burger',
+					orderStatus: 'idle',
 					quantity: burger.quantity,
 					ingredients: burger.ingredients,
 				};
