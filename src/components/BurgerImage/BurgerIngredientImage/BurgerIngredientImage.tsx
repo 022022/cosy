@@ -1,6 +1,7 @@
 import { PROJECT_ID } from '../../../services/sanity/publicData';
 import { BurgerIngredientImageProps } from '../../../types/types';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
+import { LazyMotion, domAnimation } from 'framer-motion';
 
 export function BurgerIngredientImage({
         height,
@@ -22,20 +23,22 @@ export function BurgerIngredientImage({
         };
 
 	return (
-		<motion.img
-			initial='initial'
-			animate='enter'
-			exit='exit'
-			variants={variants}
-			height={height}
-			width={width}
-			id={id}
-			src={`https://cdn.sanity.io/images/${PROJECT_ID}/production/${srcId}-${srcSize}.png`}
-			alt=''
-			style={{
-				zIndex: 999 - i,
-				top: `${top}px`,
-			}}
-		/>
+		<LazyMotion features={domAnimation}>
+			<m.img
+				initial='initial'
+				animate='enter'
+				exit='exit'
+				variants={variants}
+				height={height}
+				width={width}
+				id={id}
+				src={`https://cdn.sanity.io/images/${PROJECT_ID}/production/${srcId}-${srcSize}.png`}
+				alt=''
+				style={{
+					zIndex: 999 - i,
+					top: `${top}px`,
+				}}
+			/>
+		</LazyMotion>
 	);
 }
