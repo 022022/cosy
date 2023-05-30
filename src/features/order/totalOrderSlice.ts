@@ -16,7 +16,7 @@ export interface TotalOrder {
 	totalOrderId: string;
 	phone: string;
 	address: string;
-	orderContents: OrderContentsItem[]; // temp
+	orderContents: OrderContentsItem[];
 }
 
 export interface OrderContentsItem {
@@ -106,5 +106,11 @@ export const selectTotalOrderStatus = (state: RootState) =>
 
 export const selectTotalOrder = (state: RootState) =>
 	state.totalOrder.totalOrder;
+
+export const selectPhone = (state: RootState) =>
+	state.totalOrder.totalOrder.phone;
+
+export const selectAddress = (state: RootState) =>
+	state.totalOrder.totalOrder.address;
 
 export default totalOrderSlice.reducer;

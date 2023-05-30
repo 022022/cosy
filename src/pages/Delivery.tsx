@@ -2,18 +2,19 @@ import { FormEvent, useState } from 'react';
 import { Button, Form, InputGroup } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { finalizeTotalOrder } from '../features/order/totalOrderSlice';
+import { finalizeTotalOrder, selectAddress, selectPhone } from '../features/order/totalOrderSlice';
 import { selectBurgerOrders } from '../features/burger/burgerSlice';
 import { nanoid } from '@reduxjs/toolkit';
 
 export function Delivery() {
     const navigate = useNavigate();
-
     const [validated, setValidated] = useState(false);
 
-    const dispatch = useAppDispatch();
     const burgerOrders = useAppSelector(selectBurgerOrders);
+    const phone = useAppSelector(selectPhone);
+    const address = useAppSelector(selectAddress);
 
+    const dispatch = useAppDispatch();
     const sentOrder = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         event.stopPropagation();
@@ -64,6 +65,7 @@ export function Delivery() {
 							required
 							pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
 							placeholder='111-111-1111'
+							defaultValue={phone}
 						/>
 						<Form.Control.Feedback type='invalid'>
 							Введите номер телефона в формате 123-456-8901)
@@ -78,6 +80,7 @@ export function Delivery() {
 						rows={3}
 						name='address'
 						required
+						defaultValue={address}
 					/>
 					<Form.Control.Feedback type='invalid'>
 						Укажите адрес доставки
