@@ -1,6 +1,6 @@
 export function Error() {
     return (
-		<div className='burger__load-error'>
+		<div className='info-page'>
 			<img
 				alt='Логотип бургерной Раз-два-три бургер'
 				src='images/logo123burger.svg'
