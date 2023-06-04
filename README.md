@@ -5,10 +5,10 @@ React / TypeScript / Redux Toolkit / Framer Motion / Sanity Headless CMS REST AP
 
 
 * Приложение для заказчика — 
-https://123burger.netlify.app/
+[Приложение](https://123burger.netlify.app/) | [Код](https://github.com/022022/cosy)
 
 * Приложение для бургер-шефа — 
-https://123burger-chief.netlify.app/
+[Приложение](https://123burger-chief.netlify.app/) | [Код](https://github.com/022022/burger-chief-app)
 
 
 ## Заказчик ##
