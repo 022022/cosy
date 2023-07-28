@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { PROJECT_ID } from '../../../services/sanity/publicData';
 import { BurgerIngredientImageProps } from '../../../types/types';
 import { m } from 'framer-motion';
@@ -22,23 +23,30 @@ export function BurgerIngredientImage({
             exit: { opacity: 0 },
         };
 
-	return (
-		<LazyMotion features={domAnimation}>
-			<m.img
-				initial='initial'
-				animate='enter'
-				exit='exit'
-				variants={variants}
-				height={height}
-				width={width}
-				id={id}
-				src={`https://cdn.sanity.io/images/${PROJECT_ID}/production/${srcId}-${srcSize}.png`}
-				alt=''
-				style={{
-					zIndex: 999 - i,
-					top: `${top}px`,
-				}}
-			/>
-		</LazyMotion>
+        const [loaded, setLoaded] = useState(false);
+
+        const ingImg = new Image();
+        ingImg.src = `https://cdn.sanity.io/images/${PROJECT_ID}/production/${srcId}-${srcSize}.png`;
+        ingImg.onload = () => setLoaded(true);
+
+	return (loaded ?
+      <LazyMotion features={domAnimation}>
+        <m.img
+          initial='initial'
+          animate='enter'
+          exit='exit'
+          variants={variants}
+          height = {height}
+          width= {width}
+          id= {id}
+          src = {ingImg.src}
+          alt=''
+          style ={{zIndex: 999 - i, top: `${top}px`}}
+        />
+      </LazyMotion>
+      :
+      <div className='skeleton' style={{width: `${width}px`, height: `${height}px`,  top: `${top}px`, position: `absolute`}}
+     ></div>
+
 	);
 }
