@@ -3,17 +3,11 @@ import { BurgerImage } from '../../components/BurgerImage/BurgerImage/BurgerImag
 import { BurgerOptionsList } from './BurgerOptionsList/BurgerOptionsList';
 import { BurgerOrderDetails } from './BurgerOrderDetails/BurgerOrderDetails';
 import { Container } from 'react-bootstrap';
+import { containerMaxHeight, containerMaxWidth } from './settings';
 
 export function BurgerConstructor() {
     let { id } = useParams();
     if(!id) id = 'new';
-
-	const containerMaxHeight = Math.max(
-		Math.min(window.innerHeight - 320, 600),
-		165
-	);
-
-    const containerMaxWidth = 190;
 
 	return (
 		<Container>

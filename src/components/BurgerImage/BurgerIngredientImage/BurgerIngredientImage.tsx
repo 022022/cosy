@@ -26,8 +26,10 @@ export function BurgerIngredientImage({
         const [loaded, setLoaded] = useState(false);
 
         const ingImg = new Image();
-        ingImg.src = `https://cdn.sanity.io/images/${PROJECT_ID}/production/${srcId}-${srcSize}.png`;
+        ingImg.src = `https://cdn.sanity.io/images/${PROJECT_ID}/production/${srcId}-${srcSize}.png?w=${width}&h=${height}`;
         ingImg.onload = () => setLoaded(true);
+
+
 
 	return (loaded ?
       <LazyMotion features={domAnimation}>
