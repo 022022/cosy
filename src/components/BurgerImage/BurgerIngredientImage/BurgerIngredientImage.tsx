@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { PROJECT_ID } from '../../../services/sanity/publicData';
+import { IMAGE_LINK } from '../../../services/sanity/publicData';
 import { BurgerIngredientImageProps } from '../../../types/types';
 import { m } from 'framer-motion';
 import { LazyMotion, domAnimation } from 'framer-motion';
@@ -10,12 +10,18 @@ export function BurgerIngredientImage({
         id,
         i,
         top,
-        src
+        src,
+        srcRetina
     }: BurgerIngredientImageProps) {
+
         const srcParts = src.split('-');
+        const srcPartsRetina = srcRetina.split('-');
 
         const srcId = srcParts[1];
         const srcSize = srcParts[2];
+
+        const srcIdRetina = srcPartsRetina[1];
+        const srcSizeRetina = srcPartsRetina[2];
 
         const variants = {
             initial: { opacity: 0 },
@@ -26,10 +32,8 @@ export function BurgerIngredientImage({
         const [loaded, setLoaded] = useState(false);
 
         const ingImg = new Image();
-        ingImg.src = `https://cdn.sanity.io/images/${PROJECT_ID}/production/${srcId}-${srcSize}.png?w=${width}&h=${height}`;
+        ingImg.srcset = `${IMAGE_LINK}${srcId}-${srcSize}.png 1x, ${IMAGE_LINK}${srcIdRetina}-${srcSizeRetina}.png 2x`;
         ingImg.onload = () => setLoaded(true);
-
-
 
 	return (loaded ?
       <LazyMotion features={domAnimation}>
@@ -41,7 +45,7 @@ export function BurgerIngredientImage({
           height = {height}
           width= {width}
           id= {id}
-          src = {ingImg.src}
+          srcSet = {ingImg.srcset}
           alt=''
           style ={{zIndex: 999 - i, top: `${top}px`}}
         />

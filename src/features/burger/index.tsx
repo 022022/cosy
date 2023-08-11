@@ -3,7 +3,7 @@ import { BurgerImage } from '../../components/BurgerImage/BurgerImage/BurgerImag
 import { BurgerOptionsList } from './BurgerOptionsList/BurgerOptionsList';
 import { BurgerOrderDetails } from './BurgerOrderDetails/BurgerOrderDetails';
 import { Container } from 'react-bootstrap';
-import { containerMaxHeight, containerMaxWidth } from './settings';
+import { burgerImageContainerMaxHeight } from './settings';
 
 export function BurgerConstructor() {
     let { id } = useParams();
@@ -16,8 +16,7 @@ export function BurgerConstructor() {
 					<BurgerOrderDetails orderId={id} />
 					<div className='burger__visual'>
 						<BurgerImage
-							containerMaxHeight={containerMaxHeight}
-							containerMaxWidth={containerMaxWidth}
+							containerMaxHeight={burgerImageContainerMaxHeight}
 							orderId={id}
 						></BurgerImage>
 					</div>

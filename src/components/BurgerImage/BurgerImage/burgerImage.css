@@ -5,6 +5,8 @@
 
 .burger__whole {
     position: relative;
+    display: flex;
+    justify-content: center;
 }
 
 .burger__whole img {
