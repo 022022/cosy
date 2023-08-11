@@ -33,8 +33,8 @@ export function OrderItem({
 			<Link to={`/burger/${orderId}`} title='Поменять ингредиенты'>
 				<BurgerImage
 					containerMaxHeight={150}
-					containerMaxWidth={90}
 					orderId={orderId}
+          sizeCoefficient={0.4}
 				></BurgerImage>
 			</Link>
 			<div className='d-flex w-100 flex-column align-items-center align-items-md-start'>
@@ -42,11 +42,11 @@ export function OrderItem({
 					Авторский Бургер
 				</Link>
 
-				<ul className='pb-4 pe-4'>{orderDescription}</ul>
+				<ul className='pb-4'>{orderDescription}</ul>
 
 				<div className='fs-3'>{totalPrice * orderQuantity} руб.</div>
 			</div>
-			<div className='position-relative'>
+			<div className='position-relative pe-4'>
 				<AddRemoveButton
 					quantity={orderQuantity}
 					setQuantity={(q) => setBurgerQuantity(q)}

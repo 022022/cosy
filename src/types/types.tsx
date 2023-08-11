@@ -1,7 +1,7 @@
 export interface BurgerImageProps {
 	containerMaxHeight: number;
-    containerMaxWidth: number;
-    orderId: string;
+  orderId: string;
+  sizeCoefficient?: number;
 }
 
 export interface BurgerGroup {
@@ -24,11 +24,26 @@ export interface BurgerOptions {
 			_ref: string;
 		};
 	};
+	image_sm: {
+		asset: {
+			_ref: string;
+		};
+	};
 	visual: {
 		width: number;
 		height: number;
+		width_sm: number;
+		height_sm: number;
 		bottom: {
 			id: string;
+			image: {
+				asset: {
+					_ref: string;
+				};
+			};
+			visual: { width: number; height: number };
+		};
+		bottom_sm: {
 			image: {
 				asset: {
 					_ref: string;
@@ -52,10 +67,11 @@ export interface BurgerInfo {
 export interface BurgerIngredientImageProps {
 	height: number;
 	width: number;
-    id: string;
+  id: string;
 	i: number;
 	top: number;
-    src: string;
+  src: string;
+  srcRetina: string;
 }
 
 
@@ -63,9 +79,14 @@ export interface ItemsVisible {
 	height: number;
 	width: number;
 	id: string;
-    image: {
-        asset: {
-            _ref: string;
-        }
+  imageRetina: {
+      asset: {
+          _ref: string;
+      }
+  }
+  image: {
+    asset: {
+        _ref: string;
     }
+  }
 }

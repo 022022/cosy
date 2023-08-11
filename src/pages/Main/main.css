@@ -49,3 +49,20 @@
         padding: 65px 0;
     }
 }
+
+.skeleton {
+  background: url('./../../../public/images/skeleton.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 1000;
+  animation: skeleton-animate 1s linear alternate infinite;
+}
+
+@keyframes skeleton-animate {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}

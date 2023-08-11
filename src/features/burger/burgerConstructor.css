@@ -28,6 +28,7 @@
 
 	.burger__order-details {
 		padding: 40px;
+    padding-top: 8%;
 	}
 
 	.burger__options {
@@ -126,5 +127,11 @@
     }
     .burger__options {
 		margin-left: 0;
+	}
+}
+
+@media (max-height: 500px) {
+	.burger__order .burger__visual {
+		display: none;
 	}
 }
